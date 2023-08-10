@@ -30,7 +30,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-mariacjones-buildfitnes-hvxppftvk8w.ws-eu102.gitpod.io', 'build-fitness.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = [
+    '8000-mariacjones-buildfitnes-hvxppftvk8w.ws-eu102.gitpod.io',
+    'build-fitness-66f794a76bbb.herokuapp.com',
+    'build-fitness.herokuapp.com',
+    'localhost']
 
 
 # Application definition
