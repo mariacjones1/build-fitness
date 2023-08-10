@@ -1,1 +1,1 @@
-web: gunicorn build-fitness.wsgi
+web: gunicorn build.wsgi
