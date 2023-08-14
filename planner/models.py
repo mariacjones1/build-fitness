@@ -2,8 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.core.validators import MaxValueValidator, MinValueValidator
 from cloudinary.models import CloudinaryField
-
 
 CATEGORIES = [
         ("running", "Running"),
@@ -12,7 +12,6 @@ CATEGORIES = [
         ("lower body", "Lower Body"),
         ("mobility", "Mobility"),
     ]
-
 
 ROLES = [
     (0, "admin"),
@@ -23,8 +22,10 @@ ROLES = [
 class Exercise(models.Model):
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=50, unique=True)
-    sets = models.IntegerField()
-    reps = models.IntegerField()
+    sets = models.IntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)])
+    reps = models.IntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(15)])
 
     class Meta:
         ordering = ["name"]
@@ -44,7 +45,36 @@ class Workout(models.Model):
     image = CloudinaryField("image", default="placeholder")
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
-    exercises = models.ManyToManyField(Exercise)
+    exercise1 = models.ForeignKey(
+        Exercise, on_delete=models.CASCADE, related_name="exercise1",
+        null=True)
+    exercise2 = models.ForeignKey(
+        Exercise, on_delete=models.CASCADE, related_name="exercise2",
+        null=True)
+    exercise3 = models.ForeignKey(
+        Exercise, on_delete=models.CASCADE, related_name="exercise3",
+        null=True)
+    exercise4 = models.ForeignKey(
+        Exercise, on_delete=models.CASCADE, related_name="exercise4",
+        null=True)
+    exercise5 = models.ForeignKey(
+        Exercise, on_delete=models.CASCADE, related_name="exercise5",
+        null=True)
+    exercise6 = models.ForeignKey(
+        Exercise, on_delete=models.CASCADE, related_name="exercise6",
+        null=True)
+    exercise7 = models.ForeignKey(
+        Exercise, on_delete=models.CASCADE, related_name="exercise7",
+        null=True)
+    exercise8 = models.ForeignKey(
+        Exercise, on_delete=models.CASCADE, related_name="exercise8",
+        null=True)
+    exercise9 = models.ForeignKey(
+        Exercise, on_delete=models.CASCADE, related_name="exercise9",
+        null=True)
+    exercise10 = models.ForeignKey(
+        Exercise, on_delete=models.CASCADE, related_name="exercise10",
+        null=True)
     saves = models.ManyToManyField(
         User, related_name="workout_saves", blank=True)
     completed = models.ManyToManyField(
@@ -76,7 +106,7 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
+    instance.userprofile.save()
 
 
 class Comment(models.Model):
