@@ -56,25 +56,25 @@ class Workout(models.Model):
         null=True)
     exercise4 = models.ForeignKey(
         Exercise, on_delete=models.CASCADE, related_name="exercise4",
-        null=True)
+        null=True, blank=True)
     exercise5 = models.ForeignKey(
         Exercise, on_delete=models.CASCADE, related_name="exercise5",
-        null=True)
+        null=True, blank=True)
     exercise6 = models.ForeignKey(
         Exercise, on_delete=models.CASCADE, related_name="exercise6",
-        null=True)
+        null=True, blank=True)
     exercise7 = models.ForeignKey(
         Exercise, on_delete=models.CASCADE, related_name="exercise7",
-        null=True)
+        null=True, blank=True)
     exercise8 = models.ForeignKey(
         Exercise, on_delete=models.CASCADE, related_name="exercise8",
-        null=True)
+        null=True, blank=True)
     exercise9 = models.ForeignKey(
         Exercise, on_delete=models.CASCADE, related_name="exercise9",
-        null=True)
+        null=True, blank=True)
     exercise10 = models.ForeignKey(
         Exercise, on_delete=models.CASCADE, related_name="exercise10",
-        null=True)
+        null=True, blank=True)
     saves = models.ManyToManyField(
         User, related_name="workout_saves", blank=True)
     completed = models.ManyToManyField(
