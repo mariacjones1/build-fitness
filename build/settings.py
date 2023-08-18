@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '8000-mariacjones-buildfitnes-hvxppftvk8w.ws-eu103.gitpod.io',
+    '8000-mariacjones-buildfitnes-hvxppftvk8w.ws-eu104.gitpod.io',
     'build-fitness-66f794a76bbb.herokuapp.com',
     'localhost']
 

@@ -138,8 +138,8 @@ class Workout(models.Model):
     def __str__(self):
         return self.name
 
-    def number_of_likes(self):
-        return self.likes.count()
+    def number_of_saves(self):
+        return self.saves.count()
 
     def number_of_completed(self):
         return self.completed.count()
