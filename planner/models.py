@@ -6,13 +6,13 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from multiselectfield import MultiSelectField
 from cloudinary.models import CloudinaryField
 
-CATEGORIES = [
-        ("running", "Running"),
-        ("full body", "Full Body"),
-        ("upper body", "Upper Body"),
-        ("lower body", "Lower Body"),
-        ("mobility", "Mobility"),
-    ]
+# CATEGORIES = [
+#         ("running", "Running"),
+#         ("full body", "Full Body"),
+#         ("upper body", "Upper Body"),
+#         ("lower body", "Lower Body"),
+#         ("mobility", "Mobility"),
+#     ]
 
 ROLES = [
     (0, "admin"),
@@ -20,10 +20,19 @@ ROLES = [
 ]
 
 
+class Category(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    name = models.CharField(max_length=20, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Exercise(models.Model):
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=50, unique=True)
-    category = MultiSelectField(choices=CATEGORIES, null=True)
+    # category = MultiSelectField(choices=CATEGORIES, null=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     class Meta:
         ordering = ["name"]
@@ -38,8 +47,9 @@ class Workout(models.Model):
     slug = models.SlugField(max_length=200, unique=True)
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="workouts")
-    category = models.CharField(
-        max_length=50, choices=CATEGORIES, default="full body")
+    # category = models.CharField(
+    #     max_length=50, choices=CATEGORIES, default="full body")
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     image = CloudinaryField("image", default="placeholder")
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)

@@ -13,8 +13,6 @@ class WorkoutAdmin(admin.ModelAdmin):
     search_fields = ['name']
 
 
-# admin.site.register(Workout, WorkoutAdmin)
-
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('user', 'workout', 'body', 'created_on', 'approved')
