@@ -5,12 +5,22 @@ from .models import *
 planner_models = apps.get_app_config('planner').get_models()
 
 
+class ExerciseAdmin(admin.TabularInline):
+    model = Exercise
+
+
 @admin.register(Workout)
 class WorkoutAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ['name']}
     list_filter = ('created_on', 'category')
     list_display = ('name', 'slug', 'category', 'created_on')
     search_fields = ['name']
+    inlines = [ExerciseAdmin]
+
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ['name']}
 
 
 @admin.register(Comment)

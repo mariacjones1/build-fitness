@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <h2>{{ workout.name }}</h2>
+        <h5>Created by {{ workout.author }} | {{ workout.created_on }}</h5>
+        <div class="col-md-3">
+            {% if "placeholder" in workout.image.url %}
+            <img class="card-img-top" src=" {{ workout.category.image.url }}" style="height: 30vh; object-fit: cover;">
+            {% else %}
+            <img class="card-img-top" src=" {{ workout.image.url }}">
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            {% for exercise in workout.exercises.all %}
+                {{ forloop.counter }}. {{ exercise.name }} {{ exercise.sets }}x{{ exercise.reps }}<br>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
