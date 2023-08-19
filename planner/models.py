@@ -4,6 +4,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.core.validators import MaxValueValidator, MinValueValidator
 from multiselectfield import MultiSelectField
+from colorfield.fields import ColorField
 from cloudinary.models import CloudinaryField
 
 # CATEGORIES = [
@@ -23,6 +24,8 @@ ROLES = [
 class Category(models.Model):
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=20, unique=True)
+    image = CloudinaryField("image", default="placeholder")
+    color = ColorField(default="#FFFFFF")
 
     def __str__(self):
         return self.name

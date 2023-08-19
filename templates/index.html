@@ -15,7 +15,7 @@
                         <div class="card-body">
                             <div class="image-container">
                                 {% if "placeholder" in workout.image.url %}
-                                <p>No image found</p>
+                                <img class="card-img-top" src=" {{ workout.category.image.url }}" style="max-height: 200px; object-fit: cover;">
                                 {% else %}
                                 <img class="card-img-top" src=" {{ workout.image.url }}">
                                 {% endif %}
@@ -47,13 +47,16 @@
     <nav>
         <div class="col-12 mt-3 left">
             <div class="row">
+                <h2>Browse by category</h2>
                 {% for category in Category %}
                 <div class="col-md-4">
                     <div class="card mb-4">
-                        <div class="card-body">
-                            <a href="#" class="page-link">
-                                <h2 class="card-title">{{ category.name }}</h2>
-                            </a>
+                        <div class="card-body category" style="background-image: url('{{ category.image.url }}'); background-position: top; padding: 0;">
+                            <div class="overlay" style="background-color: {{ category.color }}; opacity: 0.5;">
+                                <a href="#" class="page-link">
+                                    <h2 class="card-title" style="height: 200px; width: 500px; margin: 0; padding: 0;">{{ category.name }}</h2>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
