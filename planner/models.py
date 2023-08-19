@@ -7,14 +7,6 @@ from multiselectfield import MultiSelectField
 from colorfield.fields import ColorField
 from cloudinary.models import CloudinaryField
 
-# CATEGORIES = [
-#         ("running", "Running"),
-#         ("full body", "Full Body"),
-#         ("upper body", "Upper Body"),
-#         ("lower body", "Lower Body"),
-#         ("mobility", "Mobility"),
-#     ]
-
 ROLES = [
     (0, "admin"),
     (1, "standard"),
@@ -38,96 +30,10 @@ class Workout(models.Model):
     slug = models.SlugField(max_length=200, unique=True)
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="workouts")
-    # category = models.CharField(
-    #     max_length=50, choices=CATEGORIES, default="full body")
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     image = CloudinaryField("image", default="placeholder")
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
-    # exercise1 = models.ForeignKey(
-    #     Exercise, on_delete=models.CASCADE, related_name="exercise1",
-    #     null=True)
-    # exercise1_sets = models.IntegerField(
-    #     validators=[MinValueValidator(1), MaxValueValidator(5)], null=True)
-    # exercise1_reps = models.IntegerField(
-    #     validators=[MinValueValidator(1), MaxValueValidator(15)], null=True)
-    # exercise2 = models.ForeignKey(
-    #     Exercise, on_delete=models.CASCADE, related_name="exercise2",
-    #     null=True)
-    # exercise2_sets = models.IntegerField(
-    #     validators=[MinValueValidator(1), MaxValueValidator(5)], null=True)
-    # exercise2_reps = models.IntegerField(
-    #     validators=[MinValueValidator(1), MaxValueValidator(15)], null=True)
-    # exercise3 = models.ForeignKey(
-    #     Exercise, on_delete=models.CASCADE, related_name="exercise3",
-    #     null=True)
-    # exercise3_sets = models.IntegerField(
-    #     validators=[MinValueValidator(1), MaxValueValidator(5)], null=True)
-    # exercise3_reps = models.IntegerField(
-    #     validators=[MinValueValidator(1), MaxValueValidator(15)], null=True)
-    # exercise4 = models.ForeignKey(
-    #     Exercise, on_delete=models.CASCADE, related_name="exercise4",
-    #     null=True, blank=True)
-    # exercise4_sets = models.IntegerField(
-    #     validators=[MinValueValidator(1), MaxValueValidator(5)],
-    #     null=True, blank=True)
-    # exercise4_reps = models.IntegerField(
-    #     validators=[MinValueValidator(1), MaxValueValidator(15)],
-    #     null=True, blank=True)
-    # exercise5 = models.ForeignKey(
-    #     Exercise, on_delete=models.CASCADE, related_name="exercise5",
-    #     null=True, blank=True)
-    # exercise5_sets = models.IntegerField(
-    #     validators=[MinValueValidator(1), MaxValueValidator(5)],
-    #     null=True, blank=True)
-    # exercise5_reps = models.IntegerField(
-    #     validators=[MinValueValidator(1), MaxValueValidator(15)],
-    #     null=True, blank=True)
-    # exercise6 = models.ForeignKey(
-    #     Exercise, on_delete=models.CASCADE, related_name="exercise6",
-    #     null=True, blank=True)
-    # exercise6_sets = models.IntegerField(
-    #     validators=[MinValueValidator(1), MaxValueValidator(5)],
-    #     null=True, blank=True)
-    # exercise6_reps = models.IntegerField(
-    #     validators=[MinValueValidator(1), MaxValueValidator(15)],
-    #     null=True, blank=True)
-    # exercise7 = models.ForeignKey(
-    #     Exercise, on_delete=models.CASCADE, related_name="exercise7",
-    #     null=True, blank=True)
-    # exercise7_sets = models.IntegerField(
-    #     validators=[MinValueValidator(1), MaxValueValidator(5)],
-    #     null=True, blank=True)
-    # exercise7_reps = models.IntegerField(
-    #     validators=[MinValueValidator(1), MaxValueValidator(15)],
-    #     null=True, blank=True)
-    # exercise8 = models.ForeignKey(
-    #     Exercise, on_delete=models.CASCADE, related_name="exercise8",
-    #     null=True, blank=True)
-    # exercise8_sets = models.IntegerField(
-    #     validators=[MinValueValidator(1), MaxValueValidator(5)],
-    #     null=True, blank=True)
-    # exercise8_reps = models.IntegerField(
-    #     validators=[MinValueValidator(1), MaxValueValidator(15)],
-    #     null=True, blank=True)
-    # exercise9 = models.ForeignKey(
-    #     Exercise, on_delete=models.CASCADE, related_name="exercise9",
-    #     null=True, blank=True)
-    # exercise9_sets = models.IntegerField(
-    #     validators=[MinValueValidator(1), MaxValueValidator(5)],
-    #     null=True, blank=True)
-    # exercise9_reps = models.IntegerField(
-    #     validators=[MinValueValidator(1), MaxValueValidator(15)],
-    #     null=True, blank=True)
-    # exercise10 = models.ForeignKey(
-    #     Exercise, on_delete=models.CASCADE, related_name="exercise10",
-    #     null=True, blank=True)
-    # exercise10_sets = models.IntegerField(
-    #     validators=[MinValueValidator(1), MaxValueValidator(5)],
-    #     null=True, blank=True)
-    # exercise10_reps = models.IntegerField(
-    #     validators=[MinValueValidator(1), MaxValueValidator(15)],
-    #     null=True, blank=True)
     saves = models.ManyToManyField(
         User, related_name="workout_saves", blank=True)
     completed = models.ManyToManyField(
@@ -149,8 +55,6 @@ class Workout(models.Model):
 class Exercise(models.Model):
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=50, unique=True)
-    # category = MultiSelectField(choices=CATEGORIES, null=True)
-    # category = models.ForeignKey(Category, on_delete=models.CASCADE)
     sets = models.IntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(5)],
         null=True, blank=True)
