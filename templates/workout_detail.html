@@ -37,13 +37,16 @@
                 {% with comments.count as total_comments %}
                 <h3>Comments ({{ total_comments }}):</h3>
                 {% endwith %}
-                <div class="card-body">
+                <div class="card">
                     {% for comment in comments %}
-                    <div class="comments">
-                        <p><strong>{{ comment.user }}</strong> {{ comment.created_on }}</p>
-                        {{ comment.body }}
+                    <div class="card-body">
+                        <div class="comments">
+                            <p style="margin-bottom: 0; font-size: 90%;"><strong>{{ comment.user }}</strong> commented on
+                                {{ comment.created_on }}:</p>
+                            {{ comment.body }}
+                        </div>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
                 </div>
             </div>
         </div>
