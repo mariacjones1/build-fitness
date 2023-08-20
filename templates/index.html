@@ -59,7 +59,7 @@
                         <div class="card-body category"
                             style="background-image: url('{{ category.image.url }}'); background-position: top; padding: 0;">
                             <div class="overlay" style="background-color: {{ category.color }}; opacity: 0.5;">
-                                <a href="{% url 'workouts' %}" class="page-link">
+                                <a href="{% url 'category' category.slug %}" class="page-link">
                                     <h2 class="card-title" style="height: 200px; width: 500px; margin: 0; padding: 0;">
                                         {{ category.name }} workouts</h2>
                                 </a>
