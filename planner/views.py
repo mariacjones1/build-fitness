@@ -6,7 +6,7 @@ from .models import Workout, Category
 
 def homepage(request):
     workout = Workout.objects.all()[:3]
-    category = Category.objects.all()
+    category = Category.objects.all().order_by('id')
     return render(request, 'index.html',
                   {'Workout': workout, 'Category': category})
 
@@ -27,7 +27,8 @@ class CategoryList(generic.ListView):
     def get_queryset(self):
         self.category = get_object_or_404(
             Category, slug=self.kwargs['category_name'])
-        return Workout.objects.filter(category=self.category)
+        return Workout.objects.filter(
+            category=self.category).order_by('-created_on')
 
 
 class WorkoutDetail(View):
@@ -40,11 +41,19 @@ class WorkoutDetail(View):
     def get(self, request, slug, *args, **kwargs):
         queryset = Workout.objects.all()
         workout = get_object_or_404(queryset, slug=slug)
+        comments = workout.comments.filter(
+            approved=True).order_by("created_on")
+        saved = False
+        completed = False
 
         return render(
             request,
             "workout_detail.html",
             {
                 "workout": workout,
+                "comments": comments,
+                "commented": False,
+                "saved": saved,
+                "completed": completed,
             }
         )
