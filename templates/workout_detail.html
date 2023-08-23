@@ -2,6 +2,8 @@
 
 {% block content %}
 
+{% load crispy_forms_tags %}
+
 <div class="container">
     <div class="row">
         <div class="col-md-10">
@@ -13,48 +15,76 @@
                         <p>{{ workout.created_on}}</p>
                     </div>
                     <div class="col-md-2">
-                        <p class="text-end"><i class="fa-solid fa-download"></i> {{ workout.number_of_saves }} <i class="fa-solid fa-check"></i> {{ workout.number_of_completed }}</p>
+                        <p class="text-end"><i class="fa-solid fa-download"></i> {{ workout.number_of_saves }} <i
+                                class="fa-solid fa-check"></i> {{ workout.number_of_completed }}</p>
                     </div>
                 </div>
                 <div class="col-md-5">
                     {% if "placeholder" in workout.image.url %}
-                    <img class="card-img-top" src=" {{ workout.category.image.url }}" style="height: 30vh; object-fit: cover;">
+                    <img class="card-img-top" src=" {{ workout.category.image.url }}"
+                        style="height: 30vh; object-fit: cover;">
                     {% else %}
                     <img class="card-img-top" src=" {{ workout.image.url }}">
                     {% endif %}
                 </div>
                 <div class="col-md-5">
                     {% for exercise in workout.exercises.all %}
-                        {{ forloop.counter }}. {{ exercise.name }} {{ exercise.sets }}x{{ exercise.reps }}<br>
+                    {{ forloop.counter }}. {{ exercise.name }} {{ exercise.sets }}x{{ exercise.reps }}<br>
                     {% endfor %}
                 </div>
             </div>
             <div class="col-md-4">
-                <p><i class="fa-solid fa-download"></i> Save for later 
+                <p><i class="fa-solid fa-download"></i> Save for later
                     <i class="fa-solid fa-check"></i> Mark as completed</p>
             </div>
-            <div class="col-md-6">
-                {% with comments.count as total_comments %}
-                <h3>Comments ({{ total_comments }}):</h3>
-                {% endwith %}
-                <div class="card">
-                    {% for comment in comments %}
-                    <div class="card-body">
-                        <div class="comments">
-                            <p style="margin-bottom: 0; font-size: 90%;"><strong>{{ comment.user }}</strong> commented on
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            {% with comments.count as total_comments %}
+            <h5>Comments ({{ total_comments }}):</h5>
+            {% endwith %}
+            <div class="card">
+                {% for comment in comments %}
+                <div class="card-body">
+                    <div class="comments">
+                        <p style="margin-bottom: 0; font-size: 90%;"><strong>{{ comment.user }}</strong> commented on
                                 {{ comment.created_on }}:</p>
-                            {{ comment.body }}
-                        </div>
-                        {% endfor %}
+                        {{ comment.body }}
                     </div>
+                {% endfor %}
                 </div>
             </div>
         </div>
+        <div class="col-md-6">
+            <div class="card-body">
+                {% if commented %}
+                <div class="alert alert-success" role="alert">
+                    Your comment is awaiting approval
+                </div>
+                {% else %}
+
+                {% if user.is_authenticated %}
+                <h5>Leave a comment:</h5>
+                <p>Posting as: {{ user.username }}</p>
+                <form method="POST">
+                    {{ comment_form | crispy }}
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-signup btn-lg">Submit</button>
+                </form>
+                {% endif %}
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+</div>
         <div class="col-md-2">
             <h4>You may also like...</h4>
         </div>
-    </div>
-    
-</div>
+
 
 {% endblock content %}
