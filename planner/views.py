@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
 from django.template import RequestContext
+from django.http import HttpResponseRedirect
 from .models import Workout, Category
 from .forms import CommentForm
 
@@ -96,3 +97,23 @@ class WorkoutDetail(View):
                 "completed": completed,
             },
         )
+
+
+class SaveWorkout(View):
+    def post(self, request, slug):
+        workout = get_object_or_404(Workout, slug=slug)
+        if workout.saves.filter(id=self.request.user.id).exists():
+            workout.saves.remove(request.user)
+        else:
+            workout.saves.add(request.user)
+        return HttpResponseRedirect(reverse('workout_detail', args=[slug]))
+
+
+class CompleteWorkout(View):
+    def post(self, request, slug):
+        workout = get_object_or_404(Workout, slug=slug)
+        if workout.completed.filter(id=self.request.user.id).exists():
+            workout.completed.remove(request.user)
+        else:
+            workout.completed.add(request.user)
+        return HttpResponseRedirect(reverse('workout_detail', args=[slug]))

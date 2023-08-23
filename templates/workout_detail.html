@@ -34,8 +34,31 @@
                 </div>
             </div>
             <div class="col-md-4">
+                {% if user.is_authenticated %}
+                <form action="{% url 'workout_save' workout.slug %}" class="d-inline" method="POST">
+                    {% csrf_token %}
+                    {% if saved %}
+                    <button type="submit" name="workout_id" value="{{ workout.slug }}" class="btn-like liked"><i
+                            class="fa-solid fa-download"></i> Saved</button>
+                    {% else %}
+                    <button type="submit" name="workout_id" value="{{ workout.slug }}" class="btn-like"><i
+                            class="fa-solid fa-download"></i> Save for later</button>
+                    {% endif %}
+                </form>
+                <form action="{% url 'workout_complete' workout.slug %}" class="d-inline" method="POST">
+                    {% csrf_token %}
+                    {% if completed %}
+                    <button type="submit" name="workout_id" value="{{ workout.slug }}" class="btn-like liked"><i
+                            class="fa-solid fa-check"></i> Completed</button>
+                    {% else %}
+                    <button type="submit" name="workout_id" value="{{ workout.slug }}" class="btn-like"><i
+                            class="fa-solid fa-check"></i> Mark as completed</button>
+                    {% endif %}
+                </form>
+                {% else %}
                 <p><i class="fa-solid fa-download"></i> Save for later
                     <i class="fa-solid fa-check"></i> Mark as completed</p>
+                {% endif %}
             </div>
         </div>
     </div>
