@@ -54,15 +54,15 @@ class Workout(models.Model):
 
 class Exercise(models.Model):
     id = models.BigAutoField(primary_key=True)
-    name = models.CharField(max_length=50, unique=True)
+    name = models.CharField(max_length=50)
     sets = models.IntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(5)],
-        null=True, blank=True)
+        null=True)
     reps = models.IntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(15)],
-        null=True, blank=True)
+        null=True)
     workout = models.ForeignKey(
-        Workout, on_delete=models.CASCADE, related_name="exercises", null=True)
+        Workout, on_delete=models.CASCADE, related_name="exercises")
 
     class Meta:
         ordering = ["name"]
@@ -74,6 +74,9 @@ class Exercise(models.Model):
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     role = models.IntegerField(choices=ROLES, default=1)
+
+    def __str__(self):
+        return self.name
 
 
 @receiver(post_save, sender=User)

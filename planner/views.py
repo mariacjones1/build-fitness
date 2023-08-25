@@ -2,8 +2,11 @@ from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
+from django.forms import inlineformset_factory
+from django.utils.text import slugify
+from django.contrib import messages
 from .models import Workout, Category
-from .forms import CommentForm
+from .forms import *
 
 
 def homepage(request):
@@ -117,3 +120,45 @@ class CompleteWorkout(View):
         else:
             workout.completed.add(request.user)
         return HttpResponseRedirect(reverse('workout_detail', args=[slug]))
+
+
+def create_workout(request):
+    ExerciseFormSet = inlineformset_factory(
+        Workout,
+        Exercise,
+        form=ExerciseForm,
+        extra=0,
+        min_num=3,
+        validate_min=True,
+        max_num=10,
+        can_delete=False)
+    workout_form = NewWorkoutForm()
+    exercise_formset = ExerciseFormSet(instance=Workout())
+    if request.method == 'POST':
+        workout_form = NewWorkoutForm(request.POST, request.FILES)
+        exercise_formset = ExerciseFormSet(request.POST, request.FILES)
+        if workout_form.is_valid():
+            workout_form.instance.author = request.user
+            workout_form.instance.slug = slugify(workout_form.instance.name)
+            workout = workout_form.save(commit=False)
+            print(exercise_formset)
+            if exercise_formset.is_valid():
+                workout.save()
+                for exercise in exercise_formset:
+                    exercise.instance.workout = workout
+                    exercise.save()
+                messages.success(request, 'Workout created')
+                return HttpResponseRedirect(reverse('home'))
+
+    else:
+        workout_form = NewWorkoutForm()
+        exercise_formset = ExerciseFormSet(instance=Workout())
+
+    return render(
+        request,
+        "new_workout.html",
+        {
+            "workout_form": workout_form,
+            "exercise_formset": exercise_formset,
+        },
+    )

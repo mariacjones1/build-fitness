@@ -15,7 +15,7 @@ class WorkoutAdmin(admin.ModelAdmin):
     list_filter = ('created_on', 'category')
     list_display = ('name', 'slug', 'category', 'created_on')
     search_fields = ['name']
-    inlines = [ExerciseAdmin]
+    inlines = [ExerciseAdmin,]
 
 
 @admin.register(Category)
