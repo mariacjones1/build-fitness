@@ -4,7 +4,7 @@
 
 {% load crispy_forms_tags %}
 
-<div class="container">
+<div class="container bg-primary-subtle">
     <div class="row">
         <div class="col-md-10">
             <div class="row">
@@ -28,6 +28,7 @@
                     {% endif %}
                 </div>
                 <div class="col-md-5">
+                    <h4>Workout:</h4>
                     {% for exercise in workout.exercises.all %}
                     {{ forloop.counter }}. {{ exercise.name }} {{ exercise.sets }}x{{ exercise.reps }}<br>
                     {% endfor %}
@@ -62,27 +63,25 @@
             </div>
         </div>
     </div>
-</div>
+<!-- </div>
 
-<div class="container">
+<div class="container"> -->
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 mt-3">
             {% with comments.count as total_comments %}
             <h5>Comments ({{ total_comments }}):</h5>
             {% endwith %}
-            <div class="card">
+            <div class="card-body">
                 {% for comment in comments %}
-                <div class="card-body">
                     <div class="comments">
-                        <p style="margin-bottom: 0; font-size: 90%;"><strong>{{ comment.user }}</strong> commented on
+                        <p style="margin-bottom: 0; font-size: 90%; font-style: italic;"><strong>{{ comment.user }}</strong> commented on
                                 {{ comment.created_on }}:</p>
                         {{ comment.body }}
                     </div>
                 {% endfor %}
-                </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 mt-3">
             <div class="card-body">
                 {% if commented %}
                 <div class="alert alert-success" role="alert">
@@ -96,7 +95,7 @@
                 <form method="POST">
                     {{ comment_form | crispy }}
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-signup btn-lg">Submit</button>
+                    <button type="submit" class="btn btn-outline-primary mt-3">Submit</button>
                 </form>
                 {% endif %}
                 {% endif %}
@@ -105,9 +104,6 @@
         </div>
     </div>
 </div>
-        <div class="col-md-2">
-            <h4>You may also like...</h4>
-        </div>
 
 
 {% endblock content %}

@@ -4,7 +4,6 @@ from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.forms import inlineformset_factory
 from django.utils.text import slugify
-from django.contrib import messages
 from .models import Workout, Category
 from .forms import *
 
@@ -147,7 +146,6 @@ def create_workout(request):
                 for exercise in exercise_formset:
                     exercise.instance.workout = workout
                     exercise.save()
-                messages.success(request, 'Workout created')
                 return HttpResponseRedirect(reverse('home'))
 
     else:

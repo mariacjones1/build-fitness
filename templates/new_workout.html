@@ -4,27 +4,29 @@
 
 {% load crispy_forms_tags %}
 
-<div class="container">
+<div class="container bg-primary-subtle">
     <div class="row">
         <div class="col-md-8 mt-3 offset-md-2" id="form-container">
             <h2>Create a new workout:</h2>
-            <form method="POST">
+            <form method="POST" class="new-workout">
                 {% csrf_token %}
                 {{ workout_form | crispy }}
                 {{ exercise_formset.management_form }}
-                <div id="exercises">
+                <div id="exercises" class="col-md-12">
                     {% for exercise in exercise_formset %}
-                    <div class="exercise-form">
+                    <div class="exercise-form mt-3">
                         <p><strong>Exercise {{ forloop.counter }}</strong></p>
-                        {{ exercise | crispy }}
+                        {{ exercise_formset.empty_form | crispy }}
                     </div>
                     {% endfor %}
                 </div>
 
-                <div id="empty-form" class="hidden">{{ exercise_formset.empty_form.as_p }}</div>
-                <button type="button" id="add-form" class="btn btn-lg add-form">+</button>
+                <div id="empty-form" class="hidden">
+                    {{ exercise_formset.empty_form | crispy }}
+                </div>
+                <button type="button" id="add-form" class="btn btn-outline-primary add-form">Add exercise</button>
                 <br>
-                <button type="submit" class="btn btn-signup btn-lg">Submit</button>
+                <button type="submit" class="btn btn-outline-primary">Submit</button>
             </form>
         </div>
     </div>
