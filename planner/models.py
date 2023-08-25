@@ -65,7 +65,7 @@ class Exercise(models.Model):
         Workout, on_delete=models.CASCADE, related_name="exercises")
 
     class Meta:
-        ordering = ["name"]
+        ordering = ["id"]
 
     def __str__(self):
         return self.name
@@ -100,7 +100,7 @@ class Comment(models.Model):
     approved = models.BooleanField(default=False)
 
     class Meta:
-        ordering = ["created_on"]
+        ordering = ["-created_on"]
 
     def __str__(self):
         return f"Comment {self.body} by {self.user}"

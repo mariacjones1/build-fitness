@@ -4,7 +4,7 @@ from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.forms import inlineformset_factory
 from django.utils.text import slugify
-from .models import Workout, Category
+from .models import Workout, Category, Save, Complete
 from .forms import *
 
 
@@ -33,6 +33,13 @@ class CategoryList(generic.ListView):
             Category, slug=self.kwargs['category_name'])
         return Workout.objects.filter(
             category=self.category).order_by('-created_on')
+
+
+def get_saved(request):
+    saved_workouts = Workout.objects.filter(saves=request.user)
+    print(request.user)
+    return render(request, 'workouts.html',
+                  {'saved_workouts': saved_workouts})
 
 
 class WorkoutDetail(View):
@@ -140,7 +147,6 @@ def create_workout(request):
             workout_form.instance.author = request.user
             workout_form.instance.slug = slugify(workout_form.instance.name)
             workout = workout_form.save(commit=False)
-            print(exercise_formset)
             if exercise_formset.is_valid():
                 workout.save()
                 for exercise in exercise_formset:
@@ -155,6 +161,47 @@ def create_workout(request):
     return render(
         request,
         "new_workout.html",
+        {
+            "workout_form": workout_form,
+            "exercise_formset": exercise_formset,
+        },
+    )
+
+
+def edit_workout(request, slug):
+    queryset = Workout.objects.all()
+    workout = get_object_or_404(queryset, slug=slug)
+    ExerciseFormSet = inlineformset_factory(
+        Workout,
+        Exercise,
+        form=ExerciseForm,
+        extra=0,
+        min_num=3,
+        validate_min=True,
+        max_num=10,
+        can_delete=True)
+    workout_form = NewWorkoutForm(instance=workout)
+    exercise_formset = ExerciseFormSet(instance=workout)
+    if request.method == 'POST':
+        workout_form = NewWorkoutForm(
+            request.POST, request.FILES, instance=workout)
+        exercise_formset = ExerciseFormSet(
+            request.POST, request.FILES, instance=workout)
+        if workout_form.is_valid():
+            workout = workout_form.save(commit=False)
+            if exercise_formset.is_valid():
+                workout.save()
+                exercises = exercise_formset.save(commit=False)
+                for obj in exercise_formset.deleted_objects:
+                    obj.delete()
+                for exercise in exercises:
+                    exercise.save()
+                return HttpResponseRedirect(
+                    reverse('workout_detail', args=[slug]))
+
+    return render(
+        request,
+        "edit_workout.html",
         {
             "workout_form": workout_form,
             "exercise_formset": exercise_formset,
