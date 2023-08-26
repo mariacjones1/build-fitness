@@ -24,6 +24,11 @@ a:hover, .nav-link:hover, .liked {
     border-color: #272573;
 }
 
+.sign-in {
+    text-decoration: underline;
+    color: #272573;
+}
+
 .card {
     border-color: #272573;
 }
