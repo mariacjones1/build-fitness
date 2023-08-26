@@ -3,7 +3,7 @@ from .models import Workout, Category, User
 from django.contrib.auth.models import Permission
 
 
-class WorkoutListViews(TestCase):
+class TestWorkoutListViews(TestCase):
 
     def test_get_homepage(self):
         response = self.client.get('/')
@@ -33,7 +33,7 @@ class WorkoutListViews(TestCase):
         self.assertTemplateUsed(response, 'workouts.html')
 
 
-class WorkoutDetailView(TestCase):
+class TestWorkoutDetailViews(TestCase):
 
     def test_view_workout(self):
         category = Category.objects.create(name='test category')
@@ -49,7 +49,7 @@ class WorkoutDetailView(TestCase):
         self.assertTemplateUsed(response, 'workout_detail.html')
 
 
-class CreateWorkoutView(TestCase):
+class TestCreateWorkoutViews(TestCase):
 
     def test_view_create_workout(self):
         user = User.objects.create_user('tester', password='test')
@@ -61,7 +61,7 @@ class CreateWorkoutView(TestCase):
         self.assertTemplateUsed(response, 'new_workout.html')
 
 
-class EditWorkoutView(TestCase):
+class TestEditWorkoutViews(TestCase):
 
     def test_view_edit_workout(self):
         category = Category.objects.create(name='test category')
@@ -80,7 +80,7 @@ class EditWorkoutView(TestCase):
         self.assertTemplateUsed(response, 'edit_workout.html')
 
 
-class DeleteWorkoutView(TestCase):
+class TestDeleteWorkoutViews(TestCase):
 
     def test_view_delete_workout_confirmation(self):
         category = Category.objects.create(name='test category')
@@ -115,7 +115,7 @@ class DeleteWorkoutView(TestCase):
         self.assertEqual(len(existing_workouts), 0)
 
 
-class SaveWorkoutView(TestCase):
+class TestSaveWorkoutViews(TestCase):
 
     def test_save_workout(self):
         category = Category.objects.create(name='test category')
@@ -150,7 +150,7 @@ class SaveWorkoutView(TestCase):
         self.assertFalse(workout.saves.filter(id=user.id).exists())
 
 
-class CompleteWorkoutView(TestCase):
+class TestCompleteWorkoutViews(TestCase):
 
     def test_complete_workout(self):
         category = Category.objects.create(name='test category')
