@@ -9,6 +9,7 @@ urlpatterns = [
          name="category"),
     path("saved_workouts/", views.SavedWorkoutsView.as_view(), name="saved_workouts"),
     path("completed_workouts/", views.CompletedWorkoutsView.as_view(), name="completed_workouts"),
+    path("search_workouts/", views.SearchWorkoutsView.as_view(), name="search_workouts"),
     path("new_workout/", views.create_workout, name="new_workout"),
     path("<slug:slug>/", views.WorkoutDetail.as_view(), name="workout_detail"),
     path("edit_workout/<slug:slug>", views.edit_workout, name="edit_workout"),

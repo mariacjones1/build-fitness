@@ -3,6 +3,7 @@ from django.views import generic, View
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.forms import inlineformset_factory
+from django.db.models import Q
 from django.utils.text import slugify
 from .models import Workout, Category, User
 from .forms import *
@@ -51,6 +52,16 @@ class CompletedWorkoutsView(generic.ListView):
 
     def get_queryset(self):
         return Workout.objects.filter(completed__id__in=[self.request.user.id])
+
+
+class SearchWorkoutsView(generic.ListView):
+    model = Workout
+    template_name = 'workouts.html'
+    paginate_by = 6
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        return Workout.objects.filter(name__icontains=query)
 
 
 class WorkoutDetail(View):
