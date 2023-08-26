@@ -150,6 +150,7 @@ class CompleteWorkout(View):
             workout.completed.add(request.user)
         return HttpResponseRedirect(reverse('workout_detail', args=[slug]))
 
+
 @login_required
 @permission_required('planner.add_workout', raise_exception=True)
 def create_workout(request):
@@ -171,7 +172,6 @@ def create_workout(request):
             workout_form.instance.author = request.user
             workout_form.instance.slug = slugify(workout_form.instance.name)
             workout = workout_form.save(commit=False)
-            print(exercise_formset)
             if exercise_formset.is_valid():
                 workout.save()
                 for exercise in exercise_formset:
@@ -235,6 +235,7 @@ def edit_workout(request, slug):
             "exercise_formset": exercise_formset,
         },
     )
+
 
 @login_required
 @permission_required('planner.delete_workout', raise_exception=True)
