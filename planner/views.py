@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from django.forms import inlineformset_factory
 from django.db.models import Q
 from django.utils.text import slugify
+from django.contrib.auth.decorators import login_required, permission_required
 from .models import Workout, Category, User
 from .forms import *
 
@@ -149,7 +150,8 @@ class CompleteWorkout(View):
             workout.completed.add(request.user)
         return HttpResponseRedirect(reverse('workout_detail', args=[slug]))
 
-
+@login_required
+@permission_required('planner.add_workout', raise_exception=True)
 def create_workout(request):
     ExerciseFormSet = inlineformset_factory(
         Workout,
@@ -191,6 +193,8 @@ def create_workout(request):
     )
 
 
+@login_required
+@permission_required('planner.change_workout', raise_exception=True)
 def edit_workout(request, slug):
     queryset = Workout.objects.all()
     workout = get_object_or_404(queryset, slug=slug)
@@ -232,7 +236,8 @@ def edit_workout(request, slug):
         },
     )
 
-
+@login_required
+@permission_required('planner.delete_workout', raise_exception=True)
 def delete_workout(request, slug):
     queryset = Workout.objects.all()
     workout = get_object_or_404(queryset, slug=slug)

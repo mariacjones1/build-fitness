@@ -71,25 +71,6 @@ class Exercise(models.Model):
         return self.name
 
 
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    role = models.IntegerField(choices=ROLES, default=1)
-
-    def __str__(self):
-        return self.user.username
-
-
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        UserProfile.objects.create(user=instance)
-
-
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.userprofile.save()
-
-
 class Comment(models.Model):
     workout = models.ForeignKey(
         Workout, on_delete=models.CASCADE, related_name="comments")
@@ -104,25 +85,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"Comment {self.body} by {self.user}"
-
-
-# class Save(models.Model):
-#     user = models.ForeignKey(
-#         User, on_delete=models.CASCADE, related_name="saved_workouts")
-#     workout = models.ForeignKey(
-#         Workout, on_delete=models.CASCADE, related_name="saved_workout")
-#     saved_on = models.DateTimeField(auto_now_add=True)
-
-#     class Meta:
-#         ordering = ["-saved_on"]
-
-
-# class Complete(models.Model):
-#     user = models.ForeignKey(
-#         User, on_delete=models.CASCADE, related_name="completed_workout")
-#     workout = models.ForeignKey(
-#         Workout, on_delete=models.CASCADE, related_name="completed_workout")
-#     completed_on = models.DateTimeField(auto_now_add=True)
-
-#     class Meta:
-#         ordering = ["-completed_on"]

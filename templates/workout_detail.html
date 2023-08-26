@@ -61,9 +61,11 @@
                     {% endfor %}
                 </div>
                 <div class="col-md-2 text-end">
-                    {% if user.is_authenticated %}
+                    {% if perms.planner.change_workout %}
                     <a href="{% url 'edit_workout' workout.slug %}"><button type="button"
                             class="btn btn-outline-primary mt-3">Edit workout</button></a>
+                    {% endif %}
+                    {% if perms.planner.delete_workout %}
                     <a href="{% url 'delete_workout' workout.slug %}"><button type="button"
                             class="btn btn-outline-primary mt-3">Delete workout</button></a>
                     {% endif %}

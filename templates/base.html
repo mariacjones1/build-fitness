@@ -42,9 +42,11 @@
                             <li><a class="dropdown-item" href="{% url 'completed_workouts' %}">Completed</a></li>
                         </ul>
                     </li>
+                    {% if perms.planner.add_workout %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'new_workout' %}">New workout</a>
                     </li>
+                    {% endif %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'account_logout' %}">Log out</a>
                     </li>
