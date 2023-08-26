@@ -5,26 +5,22 @@ from django import forms
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ('body',)
+        fields = ['body',]
 
 
-# class SaveForm(forms.ModelForm):
-#     class Meta:
-#         model = Save
-#         fields = '__all__'
-
-
-class NewWorkoutForm(forms.ModelForm):
+class WorkoutForm(forms.ModelForm):
     class Meta:
         model = Workout
-        fields = ('name', 'category', 'image',)
+        fields = [
+            'name',
+            'category',
+            'image',]
 
 
 class ExerciseForm(forms.ModelForm):
     class Meta:
         model = Exercise
-        fields = (
+        fields = [
             'name',
             'sets',
-            'reps',
-        )
+            'reps',]

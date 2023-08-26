@@ -162,10 +162,10 @@ def create_workout(request):
         validate_min=True,
         max_num=10,
         can_delete=False)
-    workout_form = NewWorkoutForm()
+    workout_form = WorkoutForm()
     exercise_formset = ExerciseFormSet(instance=Workout())
     if request.method == 'POST':
-        workout_form = NewWorkoutForm(request.POST, request.FILES)
+        workout_form = WorkoutForm(request.POST, request.FILES)
         exercise_formset = ExerciseFormSet(request.POST, request.FILES)
         if workout_form.is_valid():
             workout_form.instance.author = request.user
@@ -180,7 +180,7 @@ def create_workout(request):
                 return HttpResponseRedirect(reverse('home'))
 
     else:
-        workout_form = NewWorkoutForm()
+        workout_form = WorkoutForm()
         exercise_formset = ExerciseFormSet(instance=Workout())
 
     return render(
@@ -207,10 +207,10 @@ def edit_workout(request, slug):
         validate_min=True,
         max_num=10,
         can_delete=True)
-    workout_form = NewWorkoutForm(instance=workout)
+    workout_form = WorkoutForm(instance=workout)
     exercise_formset = ExerciseFormSet(instance=workout)
     if request.method == 'POST':
-        workout_form = NewWorkoutForm(
+        workout_form = WorkoutForm(
             request.POST, request.FILES, instance=workout)
         exercise_formset = ExerciseFormSet(
             request.POST, request.FILES, instance=workout)

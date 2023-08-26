@@ -7,11 +7,6 @@ from multiselectfield import MultiSelectField
 from colorfield.fields import ColorField
 from cloudinary.models import CloudinaryField
 
-ROLES = [
-    (0, "admin"),
-    (1, "standard"),
-]
-
 
 class Category(models.Model):
     id = models.BigAutoField(primary_key=True)
