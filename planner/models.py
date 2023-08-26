@@ -106,23 +106,23 @@ class Comment(models.Model):
         return f"Comment {self.body} by {self.user}"
 
 
-class Save(models.Model):
-    user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="saved_workouts")
-    workout = models.ForeignKey(
-        Workout, on_delete=models.CASCADE, related_name="saved_workout")
-    saved_on = models.DateTimeField(auto_now_add=True)
+# class Save(models.Model):
+#     user = models.ForeignKey(
+#         User, on_delete=models.CASCADE, related_name="saved_workouts")
+#     workout = models.ForeignKey(
+#         Workout, on_delete=models.CASCADE, related_name="saved_workout")
+#     saved_on = models.DateTimeField(auto_now_add=True)
 
-    class Meta:
-        ordering = ["-saved_on"]
+#     class Meta:
+#         ordering = ["-saved_on"]
 
 
-class Complete(models.Model):
-    user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="completed_workout")
-    workout = models.ForeignKey(
-        Workout, on_delete=models.CASCADE, related_name="completed_workout")
-    completed_on = models.DateTimeField(auto_now_add=True)
+# class Complete(models.Model):
+#     user = models.ForeignKey(
+#         User, on_delete=models.CASCADE, related_name="completed_workout")
+#     workout = models.ForeignKey(
+#         Workout, on_delete=models.CASCADE, related_name="completed_workout")
+#     completed_on = models.DateTimeField(auto_now_add=True)
 
-    class Meta:
-        ordering = ["-completed_on"]
+#     class Meta:
+#         ordering = ["-completed_on"]
