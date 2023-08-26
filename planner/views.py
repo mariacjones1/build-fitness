@@ -44,6 +44,15 @@ class SavedWorkoutsView(generic.ListView):
         return Workout.objects.filter(saves__id__in=[self.request.user.id])
 
 
+class CompletedWorkoutsView(generic.ListView):
+    model = Workout
+    template_name = 'workouts.html'
+    paginate_by = 6
+
+    def get_queryset(self):
+        return Workout.objects.filter(completed__id__in=[self.request.user.id])
+
+
 class WorkoutDetail(View):
 
     def get_queryset(self):
