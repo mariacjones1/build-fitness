@@ -231,3 +231,13 @@ def edit_workout(request, slug):
             "exercise_formset": exercise_formset,
         },
     )
+
+
+def delete_workout(request, slug):
+    queryset = Workout.objects.all()
+    workout = get_object_or_404(queryset, slug=slug)
+    if request.method == 'GET':
+        return render(request, 'confirm_delete.html', {'workout': workout})
+    elif request.method == 'POST':
+        workout.delete()
+        return HttpResponseRedirect(reverse('home'))

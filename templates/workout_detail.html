@@ -64,8 +64,8 @@
                     {% if user.is_authenticated %}
                     <a href="{% url 'edit_workout' workout.slug %}"><button type="button"
                             class="btn btn-outline-primary mt-3">Edit workout</button></a>
-                            <a href="#"><button type="button"
-                                class="btn btn-outline-primary mt-3">Delete workout</button></a>
+                    <a href="{% url 'delete_workout' workout.slug %}"><button type="button"
+                            class="btn btn-outline-primary mt-3">Delete workout</button></a>
                     {% endif %}
                 </div>
             </div>

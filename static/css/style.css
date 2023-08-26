@@ -42,15 +42,11 @@ a:hover, .nav-link:hover, .liked {
     border: none;
 }
 
-/* .liked {
-    color: #0d6efd;
-} */
-
 .hidden {
     display: none;
 }
 
-.new-workout > button {
+.new-workout button {
     margin-top: 1rem;
 }
 

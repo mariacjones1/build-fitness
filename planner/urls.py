@@ -13,6 +13,7 @@ urlpatterns = [
     path("new_workout/", views.create_workout, name="new_workout"),
     path("<slug:slug>/", views.WorkoutDetail.as_view(), name="workout_detail"),
     path("edit_workout/<slug:slug>", views.edit_workout, name="edit_workout"),
+    path("delete_workout/<slug:slug>", views.delete_workout, name="delete_workout"),
     path("save/<slug:slug>", views.SaveWorkout.as_view(), name="workout_save"),
     path("complete/<slug:slug>", views.CompleteWorkout.as_view(),
          name="workout_complete"),
