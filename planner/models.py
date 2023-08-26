@@ -76,7 +76,7 @@ class UserProfile(models.Model):
     role = models.IntegerField(choices=ROLES, default=1)
 
     def __str__(self):
-        return self.name
+        return self.user.username
 
 
 @receiver(post_save, sender=User)
@@ -108,7 +108,7 @@ class Comment(models.Model):
 
 class Save(models.Model):
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="saved_workout")
+        User, on_delete=models.CASCADE, related_name="saved_workouts")
     workout = models.ForeignKey(
         Workout, on_delete=models.CASCADE, related_name="saved_workout")
     saved_on = models.DateTimeField(auto_now_add=True)

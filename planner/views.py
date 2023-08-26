@@ -4,7 +4,7 @@ from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.forms import inlineformset_factory
 from django.utils.text import slugify
-from .models import Workout, Category, Save, Complete
+from .models import Workout, Category, Save, Complete, User
 from .forms import *
 
 
@@ -35,11 +35,13 @@ class CategoryList(generic.ListView):
             category=self.category).order_by('-created_on')
 
 
-def get_saved(request):
-    saved_workouts = Workout.objects.filter(saves=request.user)
-    print(request.user)
-    return render(request, 'workouts.html',
-                  {'saved_workouts': saved_workouts})
+class SavedWorkoutsView(generic.ListView):
+    model = Workout
+    template_name = 'workouts.html'
+    paginate_by = 6
+
+    def get_queryset(self):
+        return Workout.objects.filter(saves__id__in=[self.request.user.id])
 
 
 class WorkoutDetail(View):
@@ -141,13 +143,17 @@ def create_workout(request):
     workout_form = NewWorkoutForm()
     exercise_formset = ExerciseFormSet(instance=Workout())
     if request.method == 'POST':
+        print("POST")
         workout_form = NewWorkoutForm(request.POST, request.FILES)
         exercise_formset = ExerciseFormSet(request.POST, request.FILES)
         if workout_form.is_valid():
+            print("workout valid")
             workout_form.instance.author = request.user
             workout_form.instance.slug = slugify(workout_form.instance.name)
             workout = workout_form.save(commit=False)
+            print(exercise_formset)
             if exercise_formset.is_valid():
+                print("exercises valid")
                 workout.save()
                 for exercise in exercise_formset:
                     exercise.instance.workout = workout

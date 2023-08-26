@@ -8,8 +8,10 @@
     <div class="row">
         <div class="col-md-10">
             <div class="row">
-                <h2>{{ workout.name }}</h2>
-                <h5>Created by {{ workout.author }}</h5>
+                <div class="col-md-8">
+                    <h2>{{ workout.name }}</h2>
+                    <h5>Created by {{ workout.author }}</h5>
+                </div>
                 <div class="row">
                     <div class="col-md-3">
                         <p>{{ workout.created_on}}</p>
@@ -26,22 +28,7 @@
                     {% else %}
                     <img class="card-img-top" src=" {{ workout.image.url }}">
                     {% endif %}
-                </div>
-                <div class="col-md-5">
-                    <h4>Workout:</h4>
-                    {% for exercise in workout.exercises.all %}
-                    {{ forloop.counter }}. {{ exercise.name }} {{ exercise.sets }}x{{ exercise.reps }}<br>
-                    {% endfor %}
-                </div>
-                <div class="col-md-2 text-end">
                     {% if user.is_authenticated %}
-                    <a href="{% url 'edit_workout' workout.slug %}"><button type="button"
-                            class="btn btn-outline-primary mt-3">Edit workout</button></a>
-                    {% endif %}
-                </div>
-            </div>
-            <div class="col-md-4">
-                {% if user.is_authenticated %}
                 <form action="{% url 'workout_save' workout.slug %}" class="d-inline" method="POST">
                     {% csrf_token %}
                     {% if saved %}
@@ -66,6 +53,21 @@
                 <p><i class="fa-solid fa-download"></i> Save for later
                     <i class="fa-solid fa-check"></i> Mark as completed</p>
                 {% endif %}
+                </div>
+                <div class="col-md-5">
+                    <h4>Workout:</h4>
+                    {% for exercise in workout.exercises.all %}
+                    {{ forloop.counter }}. {{ exercise.name }} {{ exercise.sets }}x{{ exercise.reps }}<br>
+                    {% endfor %}
+                </div>
+                <div class="col-md-2 text-end">
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'edit_workout' workout.slug %}"><button type="button"
+                            class="btn btn-outline-primary mt-3">Edit workout</button></a>
+                            <a href="#"><button type="button"
+                                class="btn btn-outline-primary mt-3">Delete workout</button></a>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>

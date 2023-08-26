@@ -8,10 +8,10 @@ class CommentForm(forms.ModelForm):
         fields = ('body',)
 
 
-class SaveForm(forms.ModelForm):
-    class Meta:
-        model = Save
-        fields = '__all__'
+# class SaveForm(forms.ModelForm):
+#     class Meta:
+#         model = Save
+#         fields = '__all__'
 
 
 class NewWorkoutForm(forms.ModelForm):

@@ -16,7 +16,7 @@
                     {% for exercise in exercise_formset %}
                     <div class="exercise-form mt-3">
                         <p><strong>Exercise {{ forloop.counter }}</strong></p>
-                        {{ exercise_formset.empty_form | crispy }}
+                        {{ exercise | crispy }}
                     </div>
                     {% endfor %}
                 </div>
