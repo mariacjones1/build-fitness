@@ -1,3 +1,9 @@
+setTimeout(function() {
+    let messages = document.getElementById("msg");
+    let alert = new bootstrap.Alert(messages);
+    alert.close();
+}, 3000);
+
 const addFormBtn = document.getElementById('add-form');
 const totalNewForms = document.getElementById('id_exercises-TOTAL_FORMS');
 const currentExerciseForms = document.getElementsByClassName('exercise-form');

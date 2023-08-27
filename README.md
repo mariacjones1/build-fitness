@@ -1,5 +1,7 @@
 ## Testing
 
+N.B. Each time a change was made to a file that had already been tested, the file was re-tested to ensure the change had not produced a new error.
+
 ### Automated testing
 
 #### Python
@@ -44,7 +46,7 @@ N.B. Django variables and tags removed before running as these were flagging as 
 
 | File | Results |
 | --- | --- |
-| [script.js](/static/js/script.js) | x2 unnecessary semi-colons (Removed and re-run to confirm.) <br> All other warnings ignored:<br>x7: 'const' is available in ES6 (use 'esversion: 6') or Mozilla JS extensions (use moz).<br>x1: 'let' is available in ES6 (use 'esversion: 6') or Mozilla JS extensions (use moz).<br>x3: 'template literal syntax' is only available in ES6 (use 'esversion: 6'). |
+| [script.js](/static/js/script.js) | x2 unnecessary semi-colons (Removed and re-run to confirm.) <br> All other warnings ignored:<br>x7: 'const' is available in ES6 (use 'esversion: 6') or Mozilla JS extensions (use moz).<br>x3: 'let' is available in ES6 (use 'esversion: 6') or Mozilla JS extensions (use moz).<br>x3: 'template literal syntax' is only available in ES6 (use 'esversion: 6').<br>One undefinred variable: bootstrap. |
 
 #### Python validator
 [PEP8](https://pep8ci.herokuapp.com/)

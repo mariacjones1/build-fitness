@@ -3,7 +3,6 @@ from django.views import generic, View
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.forms import inlineformset_factory
-from django.db.models import Q
 from django.utils.text import slugify
 from django.contrib.auth.decorators import login_required, permission_required
 from .models import Workout, Category, User
