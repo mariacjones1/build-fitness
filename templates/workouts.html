@@ -29,13 +29,12 @@
                                 </div>
                             </div>
                             <a href="{% url 'workout_detail' workout.slug %}">
-                                <h2 class="card-title">{{ workout.name }}</h2>
+                                <h3 class="card-title">{{ workout.name }}</h3>
                             </a>
                             <p class="card-text">{{ workout.category }}</p>
                             <hr />
                             <p class="card-text text-muted h6">{{ workout.created_on}} <i
-                                    class="fa-solid fa-download"></i>
-                                {{ workout.number_of_saves }} <i
+                                    class="fa-solid fa-download"></i>{{ workout.number_of_saves }} <i
                                     class="fa-solid fa-check"></i>{{ workout.number_of_completed }}</p>
                         </div>
                     </div>
