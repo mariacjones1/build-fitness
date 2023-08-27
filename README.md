@@ -1,6 +1,57 @@
-## Testing
+# Build Fitness workout planner
+Build Fitness workout planner is a website that allows users to browse workouts. Users can either browse all workouts, browse by category or search for a specific workout, and authenticated users can browse by workouts they have either saved or completed. Authorised users can create new workouts, or edit or delete existing ones.
 
-N.B. Each time a change was made to a file that had already been tested, the file was re-tested to ensure the change had not produced a new error.
+Final website: [https://build-fitness-66f794a76bbb.herokuapp.com/](https://build-fitness-66f794a76bbb.herokuapp.com/)
+
+<hr>
+
+## Table of contents
+
+- [Design and planning](#design-and-planning)
+    - [User stories](#user-stories)
+    - [Wireframes](#wireframes)
+- [Testing](#testing)
+    - [Automated testing](#automated-testing)
+    - [Validator testing](#validator-testing)
+- [Credits](#credits)
+
+## Design and planning
+
+### User stories
+1. View workouts: As a user I can view a selection of workouts so that I can choose one to complete.
+2. Filter workouts: As a user I can filter workouts so that I can easily find one that I want to do.
+3. Save workouts: As a user I can mark workouts I like so that I can come back to them later.
+4. Complete workouts: As a user I can mark off workouts I have completed so that I can see a record of what I have done.
+5. Comment on workouts: As a user I can comment on workouts so that I can leave my feedback.
+6. Workout categories: As a user I can browse different categories of workouts so that I can easily find the type of workout I want to do.
+7. Create account: As a user I can create an account so that I can come back to saved workouts and comment on workouts.
+8. View saves: As an admin I can see how many people have saved a workout so that I can see what is popular.
+9. View comments: As an admin I can see comments on workouts so that I can understand user feedback.
+10. Approve comments: As an admin I can approve comments so that I can make sure they are appropriate.
+11. Create workouts: As an admin I can create new workouts so that there is regular new content for users.
+12. Update workouts: As an admin I can update existing workouts so that they can be changed based on user feedback.
+13. Delete workouts: As an admin I can delete workouts so that unpopular workouts can be removed.
+
+User stories were added and tracked using [GitHub projects](https://github.com/users/mariacjones1/projects/2/views/1).
+
+### Wireframes
+
+#### Homepage (not signed in)
+##### Wireframe
+![Homepage - not signed in (wireframe)](/documentation/wireframes/homepage_not_signed_in.png)
+##### Screenshot
+![Homepage - not signed in (screenshot)](/documentation/screenshots/homepage_not_signed_in.png)
+![Homepage scrolled down - browse by category (screenshot)](/documentation/screenshots/browse_by_category.png)
+
+Changes made from design to final project:
+- The homepage first shows the three most recently added workouts, with the option to click 'See all workouts >>' which will show the user a page showing all workouts, not filtered by category. Below this, the user can select a category is they wish to browse a specific category. Each category card shows the placeholder image for that category with a coloured overlay to make it visually different to the workout cards.
+- The main navbar components don't stretch across the width of the screen but are all to the left, next to the site logo. The search bar is included on the navbar but aligned right on the screen. On smaller screens, the entire navbar collapses and a burger icon is used.
+
+#### Sign up
+![Sign up (wireframe)](/documentation/wireframes/sign_up.png)
+
+
+## Testing
 
 ### Automated testing
 
