@@ -24,7 +24,7 @@ a:hover, .nav-link:hover, .liked {
     border-color: #272573;
 }
 
-.sign-in {
+.sign-in, .github-link {
     text-decoration: underline;
     color: #272573;
 }
