@@ -37,18 +37,66 @@ User stories were added and tracked using [GitHub projects](https://github.com/u
 ### Wireframes
 
 #### Homepage (not signed in)
-##### Wireframe
 ![Homepage - not signed in (wireframe)](/documentation/wireframes/homepage_not_signed_in.png)
-##### Screenshot
 ![Homepage - not signed in (screenshot)](/documentation/screenshots/homepage_not_signed_in.png)
-![Homepage scrolled down - browse by category (screenshot)](/documentation/screenshots/browse_by_category.png)
+![Homepage scrolled down (screenshot)](/documentation/screenshots/homepage_2.png)
 
 Changes made from design to final project:
 - The homepage first shows the three most recently added workouts, with the option to click 'See all workouts >>' which will show the user a page showing all workouts, not filtered by category. Below this, the user can select a category is they wish to browse a specific category. Each category card shows the placeholder image for that category with a coloured overlay to make it visually different to the workout cards.
 - The main navbar components don't stretch across the width of the screen but are all to the left, next to the site logo. The search bar is included on the navbar but aligned right on the screen. On smaller screens, the entire navbar collapses and a burger icon is used.
 
-#### Sign up
+#### Sign up, sign in and sign out
 ![Sign up (wireframe)](/documentation/wireframes/sign_up.png)
+![Sign up (screenshot)](/documentation/screenshots/sign_up.png)
+![Sign in (wireframe)](/documentation/wireframes/sign_in.png)
+![Sign in (screenshot)](/documentation//screenshots/sign_in.png)
+![Sign out (screenshot)](/documentation/screenshots/sign_out.png)
+
+Changes made from design to final project:
+- Final sign up, sign in and sign out pages use Django AllAuth templates which were edited to extend base.html and match the rest of the site.
+
+#### Homepage (signed in)
+![Homepage - signed in (wireframe)](/documentation/wireframes/homepage_signed_in.png)
+![Homepage - signed in (screenshot)](/documentation/screenshots/homepage_signed_in.png)
+
+Changes made from design to final project:
+- The option to create a new workout (authorised users only) is in the navbar instead of being above it, and saved and completed workouts can be accessed via the 'My workouts' dropdown. These two choices make the site cleaner and easier to navigate.
+
+#### Browse workouts
+![Browse workouts (wireframe)](/documentation/wireframes/workout_category.png)
+![Browse workouts (screenshot)](/documentation/screenshots/browse_workouts.png)
+![Browse workouts scrolled down (screenshot)](/documentation/screenshots/browse_workouts_2.png)
+
+Changes made from design to final project:
+- Workout cards span three columns instead of four, and are six to a page.
+- Workout cards include workout author, category, creation date, number of saves and number of completes.
+
+#### Selected workout
+![Selected workout (wireframe)](/documentation/wireframes/selected_workout.png)
+![Selected workout (screenshot)](/documentation/screenshots/selected_workout.png)
+
+Changes made from design to final project:
+- The workout author, creation date and number of saves and completes are added below the workout title. Number of saves and completes is separate from the buttons below the workout image allowing the user to save or mark a workout as complete (authenticated users only) as having them together looked messy.
+- Edit and delete workout buttons (visible to authorised users only) appear to the right of the workout.
+
+#### Create (or edit) workout
+![Create workout (wireframe)](/documentation/wireframes/create_new_workout.png)
+![Create workout (screenshot)](/documentation/screenshots/create_workout.png)
+![Create workout scrolled down (screenshot)](/documentation/screenshots/create_workout.png)
+![Edit workout (screenshot)](/documentation/screenshots/edit_workout.png)
+
+Changes made from design to final project:
+- All fields span the entire section (automatically formatted using crispy forms).
+- Additional information field not included - potential future feature.
+- Edit workout uses a similar template, but current workout information is pre-populated and the user has the option to delete exercises.
+
+#### Delete workout
+![Confirm workout delete (screenshot)](/documentation/screenshots/delete_workout.png)
+
+Changes made from design to final project:
+- No wireframe created for deletion confirmation page.
+
+
 
 
 ## Testing
