@@ -24,7 +24,7 @@
                                     <p class="author">Created by: {{ workout.author }}</p>
                                 </div>
                             </div>
-                            <a href="{% url 'workout_detail' workout.slug %}" class="post-link">
+                            <a href="{% url 'workout_detail' workout.slug %}">
                                 <h2 class="card-title">{{ workout.name }}</h2>
                             </a>
                             <p class="card-text">{{ workout.category }}</p>
@@ -58,7 +58,7 @@
                 {% for category in Category %}
                 <div class="col-md-4">
                     <div class="card mb-4">
-                        <a href="{% url 'category' category.slug %}" class="page-link">
+                        <a href="{% url 'category' category.slug %}">
                             <h2 class="card-title category-title">
                                 {{ category.name }} workouts</h2>
                         </a>
