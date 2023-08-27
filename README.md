@@ -30,6 +30,19 @@ N.B. Django variables and tags removed before running as these were flagging as 
 | [workout_detail.html](/templates/workout_detail.html) | Missing elements found in base.html. <br> An img element must have an alt attribute. (Alt attributes added and file re-run to confirm issue is solved). <br> The element button must not appear as a descendant of the a element. (Fixed in file and re-run to confirm issue is solved). |
 | [workouts.html](/templates/workouts.html) | Missing elements found in base.html. <br> An img element must have an alt attribute. (Alt attributes added and file re-run to confirm issue is solved). |
 
+#### CSS validator
+[W3C](https://jigsaw.w3.org/css-validator/validator)
+
+| File | Results |
+| --- | --- |
+| [style.css](/static/css/style.css) | No Error Found. |
+
+#### JavaScript validator
+[JSHint](https://jshint.com/)
+| File | Results |
+| --- | --- |
+| [script.js](/static/js/script.js) | x2 unnecessary semi-colons (Removed and re-run to confirm.) <br> All other warnings ignored:<br>x7: 'const' is available in ES6 (use 'esversion: 6') or Mozilla JS extensions (use moz).<br>x1: 'let' is available in ES6 (use 'esversion: 6') or Mozilla JS extensions (use moz).<br>x3: 'template literal syntax' is only available in ES6 (use 'esversion: 6'). |
+
 ## Credits
 Extending user model: https://simpleisbetterthancomplex.com/tutorial/2016/07/22/how-to-extend-django-user-model.html#onetoone
 Multiselect: https://pypi.org/project/django-multiselectfield/

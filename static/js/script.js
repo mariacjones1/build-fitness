@@ -7,7 +7,7 @@ addFormBtn.addEventListener('click', addNewForm);
 function addNewForm(event) {
     if (event) {
         event.preventDefault();
-    };
+    }
     
     let currentFormCount = currentExerciseForms.length;
     if (currentFormCount < 10) {
@@ -23,7 +23,7 @@ function addNewForm(event) {
         totalNewForms.setAttribute('value', currentFormCount + 1);
         exercisesList.append(exerciseNum);
         exercisesList.append(copyEmptyForm);
-    };
+    }
 }
 
 module.exports = addNewForm;
