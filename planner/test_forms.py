@@ -16,7 +16,7 @@ class TestCommentForm(TestCase):
 
     def test_fields_are_explicit_in_form_metaclass(self):
         form = CommentForm()
-        self.assertEqual(form.Meta.fields, ['body',])
+        self.assertEqual(form.Meta.fields, ['body', ])
 
 
 class TestWorkoutForm(TestCase):
@@ -27,7 +27,7 @@ class TestWorkoutForm(TestCase):
 
     def test_fields_are_explicit_in_form_metaclass(self):
         form = WorkoutForm()
-        self.assertEqual(form.Meta.fields, ['name', 'category', 'image',])
+        self.assertEqual(form.Meta.fields, ['name', 'category', 'image', ])
 
 
 class TestExerciseForm(TestCase):
@@ -38,20 +38,36 @@ class TestExerciseForm(TestCase):
 
     def test_fields_are_explicit_in_form_metaclass(self):
         form = ExerciseForm()
-        self.assertEqual(form.Meta.fields, ['name', 'sets', 'reps',])
+        self.assertEqual(form.Meta.fields, ['name', 'sets', 'reps', ])
 
     def test_sets_above_0(self):
-        form = ExerciseForm({'name': 'Test exercise', 'sets': '0', 'reps': '1'})
+        form = ExerciseForm({
+            'name': 'Test exercise',
+            'sets': '0',
+            'reps': '1'
+            })
         self.assertFalse(form.is_valid())
 
     def test_sets_below_6(self):
-        form = ExerciseForm({'name': 'Test exercise', 'sets': '6', 'reps': '1'})
+        form = ExerciseForm({
+            'name': 'Test exercise',
+            'sets': '6',
+            'reps': '1'
+            })
         self.assertFalse(form.is_valid())
 
     def test_reps_above_0(self):
-        form = ExerciseForm({'name': 'Test exercise', 'sets': '1', 'reps': '0'})
+        form = ExerciseForm({
+            'name': 'Test exercise',
+            'sets': '1',
+            'reps': '0'
+            })
         self.assertFalse(form.is_valid())
 
     def test_reps_below_16(self):
-        form = ExerciseForm({'name': 'Test exercise', 'sets': '1', 'reps': '16'})
+        form = ExerciseForm({
+            'name': 'Test exercise',
+            'sets': '1',
+            'reps': '16'
+            })
         self.assertFalse(form.is_valid())

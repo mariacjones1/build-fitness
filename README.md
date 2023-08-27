@@ -39,9 +39,27 @@ N.B. Django variables and tags removed before running as these were flagging as 
 
 #### JavaScript validator
 [JSHint](https://jshint.com/)
+
 | File | Results |
 | --- | --- |
 | [script.js](/static/js/script.js) | x2 unnecessary semi-colons (Removed and re-run to confirm.) <br> All other warnings ignored:<br>x7: 'const' is available in ES6 (use 'esversion: 6') or Mozilla JS extensions (use moz).<br>x1: 'let' is available in ES6 (use 'esversion: 6') or Mozilla JS extensions (use moz).<br>x3: 'template literal syntax' is only available in ES6 (use 'esversion: 6'). |
+
+#### Python validator
+[PEP8](https://pep8ci.herokuapp.com/)
+
+| File | Results |
+| --- | --- |
+| [admin.py](/planner/admin.py) | 18: E231 missing whitespace after ',' -> Fixed and re-run, all clear, no errors found. |
+| [forms.py](/planner/forms.py) | 8, 17, 26: E231 missing whitespace after ',' -> Fixed and re-run, all clear, no errors found. |
+| [models.py](/planner/models.py) | All clear, no errors found. |
+| [planner urls.py](/planner/urls.py) | 10, 11, 12, 16: E501 line too long -> Fixed and re-run, all clear, no errors found. (N.B. only lines with errors split where needed - the decision was made not to put each parameter on a new line for consistency as this would result in the need for a lot of scrolling to edit or add new paths.) |
+| [views.py](/planner/views.py) | All clear, no errors found. |
+| [test_forms.py](/planner/test_forms.py) | 19, 30, 41: E231 missing whitespace after ','<br>44, 48, 52, 56: E501 line too long<br>-> All issues fixed and file re-run, all clear, no errors found. |
+| [test_models.py](/planner/test_models.py) | All clear, no errors found. |
+| [test_views.py](/planner/test_views.py) | All clear, no errors found. |
+| [settings.py](/build/settings.py) | 129, 132, 135, 138, 161: E501 line too long -> Fixed using '\\' and re-run, all clear, no errors found. |
+| [build urls.py](/build/urls.py) | All clear, no errors found. |
+
 
 ## Credits
 Extending user model: https://simpleisbetterthancomplex.com/tutorial/2016/07/22/how-to-extend-django-user-model.html#onetoone

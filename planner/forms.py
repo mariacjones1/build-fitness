@@ -5,7 +5,7 @@ from django import forms
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ['body',]
+        fields = ['body', ]
 
 
 class WorkoutForm(forms.ModelForm):
@@ -14,7 +14,7 @@ class WorkoutForm(forms.ModelForm):
         fields = [
             'name',
             'category',
-            'image',]
+            'image', ]
 
 
 class ExerciseForm(forms.ModelForm):
@@ -23,4 +23,4 @@ class ExerciseForm(forms.ModelForm):
         fields = [
             'name',
             'sets',
-            'reps',]
+            'reps', ]
