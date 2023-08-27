@@ -8,7 +8,7 @@ a {
     text-decoration: none;
 }
 
-a:hover, .nav-link:hover, .btn-like:hover {
+a:hover, .nav-link:hover, .btn-like:hover, .card-title:hover, .see-all:hover {
     color: #272573;
     font-weight: bold;
 }

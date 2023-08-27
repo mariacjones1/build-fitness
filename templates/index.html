@@ -11,7 +11,7 @@
             <div class="row">
                 {% for workout in Workout %}
                 <div class="col-lg-3 col-md-4">
-                    <div class="card mb-3">
+                    <div class="card mb-3 h-100">
                         <div class="card-body">
                             <div class="image-container">
                                 {% if "placeholder" in workout.image.url %}
@@ -39,7 +39,7 @@
                 {% if forloop.counter|divisibleby:3 %}
                 <div class="col-lg-3" style="align-self: center;">
                     <a href="{% url 'workouts' %}">
-                        <h3>See all workouts&nbsp;>></h3>
+                        <h3 class="see-all">See all workouts&nbsp;>></h3>
                     </a>
                 </div>
             </div>

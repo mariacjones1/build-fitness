@@ -3,12 +3,16 @@ Build Fitness workout planner is a website that allows users to browse workouts.
 
 Final website: [https://build-fitness-66f794a76bbb.herokuapp.com/](https://build-fitness-66f794a76bbb.herokuapp.com/)
 
+![Responsive mock-up](/documentation/screenshots/responsive_mock_up.png)
+
 <hr>
 
 ## Table of contents
 
 - [Design and planning](#design-and-planning)
     - [User stories](#user-stories)
+    - [Flowcharts](#flowcharts)
+    - [Models diagram](#models-diagram)
     - [Wireframes](#wireframes)
 - [Testing](#testing)
     - [Automated testing](#automated-testing)
@@ -34,7 +38,31 @@ Final website: [https://build-fitness-66f794a76bbb.herokuapp.com/](https://build
 
 User stories were added and tracked using [GitHub projects](https://github.com/users/mariacjones1/projects/2/views/1).
 
+### Flowcharts
+1. Find a workout
+![Find workout](/documentation/planning/flowchart_find-workout.png)
+
+Changes made from plan to final project:
+- User can also select the option 'See all workouts >>' from the homepage.
+
+2. Sign in
+![Sign in](/documentation/planning/flowchart_sign-in.png)
+
+Changes made from plan to final project:
+- Sign in and sign up are accessed via separate links (although one can be access via the other).
+
+3. Create a new workout
+![Create workout](/documentation/planning/flowchart_create-new-workout.png)
+
+Changes made from plan to final project:
+- User is redirected to homepage instead of the new workout page - potential future change.
+
+### Models diagram
+Created using [dbdiagram.io](https://dbdiagram.io/)
+![Models diagram](/documentation/planning/models-diagram.png)
+
 ### Wireframes
+Created using [Balsamiq](https://balsamiq.com/)
 
 #### Homepage (not signed in)
 ![Homepage - not signed in (wireframe)](/documentation/wireframes/homepage_not_signed_in.png)
