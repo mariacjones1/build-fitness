@@ -51,7 +51,7 @@ a:hover, .nav-link:hover, .liked {
     display: none;
 }
 
-.new-workout button {
+.new-workout button, .fake-button {
     margin-top: 1rem;
 }
 

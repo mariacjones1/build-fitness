@@ -11,7 +11,7 @@
                 {% csrf_token %}
                 <h2>Are you sure you want to delete the workout "{{ workout.name }}"?</h2>
                 <button type="submit" class="btn btn-outline-primary">Delete</button>
-                <a href="{% url 'home' %}"><button type="button" class="btn btn-outline-primary">Cancel</button></a>
+                <a href="{% url 'home' %}" class="btn btn-outline-primary fake-button">Cancel</a>
             </form>
         </div>
     </div>

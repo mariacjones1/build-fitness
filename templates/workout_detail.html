@@ -23,36 +23,36 @@
                 </div>
                 <div class="col-md-5">
                     {% if "placeholder" in workout.image.url %}
-                    <img class="card-img-top" src=" {{ workout.category.image.url }}"
+                    <img class="card-img-top" alt="workout image" src="{{ workout.category.image.url }}"
                         style="height: 30vh; object-fit: cover;">
                     {% else %}
-                    <img class="card-img-top" src=" {{ workout.image.url }}">
+                    <img class="card-img-top" alt="workout image" src="{{ workout.image.url }}">
                     {% endif %}
                     {% if user.is_authenticated %}
-                <form action="{% url 'workout_save' workout.slug %}" class="d-inline" method="POST">
-                    {% csrf_token %}
-                    {% if saved %}
-                    <button type="submit" name="workout_id" value="{{ workout.slug }}" class="btn-like liked"><i
-                            class="fa-solid fa-download"></i> Saved</button>
+                    <form action="{% url 'workout_save' workout.slug %}" class="d-inline" method="POST">
+                        {% csrf_token %}
+                        {% if saved %}
+                        <button type="submit" name="workout_id" value="{{ workout.slug }}" class="btn-like liked"><i
+                                class="fa-solid fa-download"></i> Saved</button>
+                        {% else %}
+                        <button type="submit" name="workout_id" value="{{ workout.slug }}" class="btn-like"><i
+                                class="fa-solid fa-download"></i> Save for later</button>
+                        {% endif %}
+                    </form>
+                    <form action="{% url 'workout_complete' workout.slug %}" class="d-inline" method="POST">
+                        {% csrf_token %}
+                        {% if completed %}
+                        <button type="submit" name="workout_id" value="{{ workout.slug }}" class="btn-like liked"><i
+                                class="fa-solid fa-check"></i> Completed</button>
+                        {% else %}
+                        <button type="submit" name="workout_id" value="{{ workout.slug }}" class="btn-like"><i
+                                class="fa-solid fa-check"></i> Mark as completed</button>
+                        {% endif %}
+                    </form>
                     {% else %}
-                    <button type="submit" name="workout_id" value="{{ workout.slug }}" class="btn-like"><i
-                            class="fa-solid fa-download"></i> Save for later</button>
+                    <p><i class="fa-solid fa-download"></i> Save for later
+                        <i class="fa-solid fa-check"></i> Mark as completed</p>
                     {% endif %}
-                </form>
-                <form action="{% url 'workout_complete' workout.slug %}" class="d-inline" method="POST">
-                    {% csrf_token %}
-                    {% if completed %}
-                    <button type="submit" name="workout_id" value="{{ workout.slug }}" class="btn-like liked"><i
-                            class="fa-solid fa-check"></i> Completed</button>
-                    {% else %}
-                    <button type="submit" name="workout_id" value="{{ workout.slug }}" class="btn-like"><i
-                            class="fa-solid fa-check"></i> Mark as completed</button>
-                    {% endif %}
-                </form>
-                {% else %}
-                <p><i class="fa-solid fa-download"></i> Save for later
-                    <i class="fa-solid fa-check"></i> Mark as completed</p>
-                {% endif %}
                 </div>
                 <div class="col-md-5">
                     <h4>Workout:</h4>
@@ -62,20 +62,18 @@
                 </div>
                 <div class="col-md-2 text-end">
                     {% if perms.planner.change_workout %}
-                    <a href="{% url 'edit_workout' workout.slug %}"><button type="button"
-                            class="btn btn-outline-primary mt-3">Edit workout</button></a>
+                    <a href="{% url 'edit_workout' workout.slug %}" class="btn btn-outline-primary fake-button">Edit
+                        workout</a>
                     {% endif %}
                     {% if perms.planner.delete_workout %}
-                    <a href="{% url 'delete_workout' workout.slug %}"><button type="button"
-                            class="btn btn-outline-primary mt-3">Delete workout</button></a>
+                    <a href="{% url 'delete_workout' workout.slug %}" class="btn btn-outline-primary fake-button">Delete
+                        workout</a>
                     {% endif %}
                 </div>
             </div>
         </div>
     </div>
-<!-- </div>
 
-<div class="container"> -->
     <div class="row">
         <div class="col-md-6 mt-3">
             {% with comments.count as total_comments %}
@@ -83,11 +81,12 @@
             {% endwith %}
             <div class="card-body">
                 {% for comment in comments %}
-                    <div class="comments">
-                        <p style="margin-bottom: 0; font-size: 90%; font-style: italic;"><strong>{{ comment.user }}</strong> commented on
-                                {{ comment.created_on }}:</p>
-                        {{ comment.body }}
-                    </div>
+                <div class="comments">
+                    <p style="margin-bottom: 0; font-size: 90%; font-style: italic;"><strong>{{ comment.user }}</strong>
+                        commented on
+                        {{ comment.created_on }}:</p>
+                    {{ comment.body }}
+                </div>
                 {% endfor %}
             </div>
         </div>

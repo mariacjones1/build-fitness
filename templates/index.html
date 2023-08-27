@@ -15,10 +15,10 @@
                         <div class="card-body">
                             <div class="image-container">
                                 {% if "placeholder" in workout.image.url %}
-                                <img class="card-img-top" src=" {{ workout.category.image.url }}"
-                                    style="height: 30vh; object-fit: cover;">
+                                <img class="card-img-top" alt="workout category image"
+                                    src="{{ workout.category.image.url }}" style="height: 30vh; object-fit: cover;">
                                 {% else %}
-                                <img class="card-img-top" src=" {{ workout.image.url }}">
+                                <img class="card-img-top" alt="workout category image" src="{{ workout.image.url }}">
                                 {% endif %}
                                 <div class="image-flash">
                                     <p class="author">Created by: {{ workout.author }}</p>
@@ -38,7 +38,9 @@
                 </div>
                 {% if forloop.counter|divisibleby:3 %}
                 <div class="col-md-3" style="align-self: center;">
-                    <a href="{% url 'workouts' %}"><h3>See all workouts >></h3></a>
+                    <a href="{% url 'workouts' %}">
+                        <h3>See all workouts >></h3>
+                    </a>
                 </div>
             </div>
             <div class="row">
@@ -62,7 +64,8 @@
                         </a>
                         <div class="card-body"
                             style="background-image: url('{{ category.image.url }}'); background-position: top; padding: 0;">
-                            <div class="overlay" style="background-color: {{ category.color }}; opacity: 0.5; height: 200px;"></div>
+                            <div class="overlay"
+                                style="background-color: {{ category.color }}; opacity: 0.5; height: 200px;"></div>
                         </div>
                     </div>
                 </div>

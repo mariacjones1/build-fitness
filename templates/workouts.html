@@ -14,10 +14,10 @@
                         <div class="card-body">
                             <div class="image-container">
                                 {% if "placeholder" in workout.image.url %}
-                                <img class="card-img-top" src=" {{ workout.category.image.url }}"
+                                <img class="card-img-top" alt="workout image" src="{{ workout.category.image.url }}"
                                     style="height: 30vh; object-fit: cover;">
                                 {% else %}
-                                <img class="card-img-top" src=" {{ workout.image.url }}">
+                                <img class="card-img-top" alt="workout image" src="{{ workout.image.url }}">
                                 {% endif %}
                                 <div class="image-flash">
                                     <p class="author">Created by: {{ workout.author }}</p>
