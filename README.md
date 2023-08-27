@@ -29,6 +29,8 @@ N.B. Django variables and tags removed before running as these were flagging as 
 | [new_workout.html](/templates/new_workout.html) | Missing elements found in base.html. <br> No other errors or warnings. |
 | [workout_detail.html](/templates/workout_detail.html) | Missing elements found in base.html. <br> An img element must have an alt attribute. (Alt attributes added and file re-run to confirm issue is solved). <br> The element button must not appear as a descendant of the a element. (Fixed in file and re-run to confirm issue is solved). |
 | [workouts.html](/templates/workouts.html) | Missing elements found in base.html. <br> An img element must have an alt attribute. (Alt attributes added and file re-run to confirm issue is solved). |
+| [403/html](/templates/403.html) | No errors or warnings to show. |
+| [404.html](/templates/404.html) | No errors or warnings to show. |
 
 #### CSS validator
 [W3C](https://jigsaw.w3.org/css-validator/validator)

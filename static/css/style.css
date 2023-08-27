@@ -8,7 +8,7 @@ a {
     text-decoration: none;
 }
 
-a:hover, .nav-link:hover, .liked {
+a:hover, .nav-link:hover {
     color: #272573;
     font-weight: bold;
 }
