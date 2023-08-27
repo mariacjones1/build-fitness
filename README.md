@@ -14,7 +14,11 @@ Final website: [https://build-fitness-66f794a76bbb.herokuapp.com/](https://build
     - [Flowcharts](#flowcharts)
     - [Models diagram](#models-diagram)
     - [Wireframes](#wireframes)
+- [Technology](#technology)
+    - [Languages used](#languages-used)
+    - [Frameworks and libraries used](#frameworks-and-libraries-used)
 - [Testing](#testing)
+    - [Testing user stories](#testing-user-stories)
     - [Automated testing](#automated-testing)
     - [Validator testing](#validator-testing)
 - [Credits](#credits)
@@ -22,6 +26,7 @@ Final website: [https://build-fitness-66f794a76bbb.herokuapp.com/](https://build
 ## Design and planning
 
 ### User stories
+
 1. View workouts: As a user I can view a selection of workouts so that I can choose one to complete.
 2. Filter workouts: As a user I can filter workouts so that I can easily find one that I want to do.
 3. Save workouts: As a user I can mark workouts I like so that I can come back to them later.
@@ -39,6 +44,7 @@ Final website: [https://build-fitness-66f794a76bbb.herokuapp.com/](https://build
 User stories were added and tracked using [GitHub projects](https://github.com/users/mariacjones1/projects/2/views/1).
 
 ### Flowcharts
+
 1. Find a workout
 ![Find workout](/documentation/planning/flowchart_find-workout.png)
 
@@ -58,10 +64,12 @@ Changes made from plan to final project:
 - User is redirected to homepage instead of the new workout page - potential future change.
 
 ### Models diagram
+
 Created using [dbdiagram.io](https://dbdiagram.io/)
 ![Models diagram](/documentation/planning/models-diagram.png)
 
 ### Wireframes
+
 Created using [Balsamiq](https://balsamiq.com/)
 
 #### Homepage (not signed in)
@@ -124,10 +132,81 @@ Changes made from design to final project:
 Changes made from design to final project:
 - No wireframe created for deletion confirmation page.
 
+### Design choices
 
+- Colours:
+    - The main colours used are white, black and blue (dark blue for buttons, logo and links, light blue for container backgrounds). Other colours are used for workout category overlays to make them more visually different and interesting.
+- Fonts:
+    - Default Bootstrap fonts are used as they work well and there was no need to change them.
+- Images:
+    - Each workout has an image to keep the pages visually interesting. Placeholder images are provided if the user doesn't upload a specific image when creating a workout; these differ by category to keep the homepage and 'Browse all workouts' pages varied.
 
+## Technology
+
+### Languages used
+
+- HTML5
+- CSS3
+- JavaScript
+- Python
+
+### Frameworks and libraries used
+
+- Django 3.2.20
+    - Web framework
+- Bootstrap 5.3.1
+    - To assist with styling and responsiveness
+- Font Awesome
+    - To provide icons
+- Git
+    - Used for version control by pushing commits to GitHub
+- GitHub
+    - For project storage
+- GIMP
+    - To edit images used
 
 ## Testing
+
+### Testing user stories
+
+1. View workouts: As a user I can view a selection of workouts so that I can choose one to complete.
+    - Upon entering the site, users can see the three most recent workouts, as well as the options to see all workouts or to select a workout category by scrolling down.
+
+2. Filter workouts: As a user I can filter workouts so that I can easily find one that I want to do.
+    - Users are able to use the search bar to search for a workout whose name contains the search term.
+
+3. Save workouts: As a user I can mark workouts I like so that I can come back to them later.
+    - Users who have signed in are able to save workouts from the workout detail page. Saved workouts will be shown when the user goes to My workouts > Saved in the navbar.
+
+4. Complete workouts: As a user I can mark off workouts I have completed so that I can see a record of what I have done.
+    - Users who have signed in are able to mark workouts as completed from the workout detail page. Completed workouts will be shown when the user goes to My workouts > Completed in the navbar.
+
+5. Comment on workouts: As a user I can comment on workouts so that I can leave my feedback.
+    - Users who have signed in are able to comment on workout from the workout detail page. Comments must be approved by admin before they appear for other users to see. Users who have not signed in are still able to see other users' comments.
+
+6. Workout categories: As a user I can browse different categories of workouts so that I can easily find the type of workout I want to do.
+    - Users are able to select a workout category from the homepage, which will show them all the workouts within that category.
+
+7. Create account: As a user I can create an account so that I can come back to saved workouts and comment on workouts.
+    - Users can either sign up or sign in using the respective navbar links. Authenticated users have access to additional website features, such as saving, completing and commenting on workouts.
+
+8. View saves: As an admin I can see how many people have saved a workout so that I can see what is popular.
+    - The number of saves and completes is visible on all workouts, both the cards on browsing pages and on the workout detail pages themselves. All users are able to see these numbers.
+
+9. View comments: As an admin I can see comments on workouts so that I can understand user feedback.
+    - Comments are visible on all workout detail pages to all users.
+
+10. Approve comments: As an admin I can approve comments so that I can make sure they are appropriate.
+    - Submitted comments are not approved by default; an admin user must approve them before they are visible to other users.
+
+11. Create workouts: As an admin I can create new workouts so that there is regular new content for users.
+    - Users assigned to the admin group on Django admin are able to create new workouts by clicking 'New workout' in the navbar and filling in the new workout form. The workout slug is populated from the workout title. Users without admin permissions will not see the 'New workout' option in the navbar, and will be directed to a 403 page if they try to access it via the address bar.
+
+12. Update workouts: As an admin I can update existing workouts so that they can be changed based on user feedback.
+    - Users assigned to the admin group on Django admin are able to edit workouts by clicking the 'Edit workout' button on the workout detail page and making changes in the workout form. The workout slug will be updated if the title is changed. Users are able to delete and add new exercises. Users without admin permissions will not see the 'Edit workout' button, and will be directed to a 403 page if they try to access it via the address bar.
+
+13. Delete workouts: As an admin I can delete workouts so that unpopular workouts can be removed.
+    - Users assigned to the admin group on Django admin are able to delete workouts by clicking the 'Delete workout' button on the workout detail page. They will be directed to a page asking them to confirm the deletion, at which point they can either cancel or confirm delete. Users without admin permissions will not see the 'Delete workout' button, and will be directed to a 403 page if they try to access it via the address bar.
 
 ### Automated testing
 
