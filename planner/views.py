@@ -16,6 +16,12 @@ def homepage(request):
                   {'Workout': workout, 'Category': category})
 
 
+def category_list(request):
+    category = Category.objects.all().order_by('id')
+    return render(request, 'index.html',
+                  {'Category': category})
+
+
 class WorkoutList(generic.ListView):
     model = Workout
     category = Category.objects.all()
@@ -24,7 +30,7 @@ class WorkoutList(generic.ListView):
     paginate_by = 6
 
 
-class CategoryList(generic.ListView):
+class WorkoutListByCategory(generic.ListView):
     model = Workout
     template_name = 'workouts.html'
     paginate_by = 6

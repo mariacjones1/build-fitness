@@ -10,6 +10,11 @@ class TestWorkoutListViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'index.html')
 
+    def test_get_category_list(self):
+        response = self.client.get('/categories/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'index.html')
+
     def test_get_workout_list(self):
         response = self.client.get('/workouts/')
         self.assertEqual(response.status_code, 200)

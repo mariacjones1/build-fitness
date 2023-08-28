@@ -6,6 +6,10 @@
     <div class="row">
         {% if request.resolver_match.url_name == "category" %}
         <h2>{{ workout_list.0.category }} workouts</h2>
+        {% elif request.resolver_match.url_name == "saved_workouts" %}
+        <h2>Saved workouts</h2>
+        {% elif request.resolver_match.url_name == "completed_workouts" %}
+        <h2>Completed workouts</h2>
         {% else %}
         <h2>All workouts</h2>
         {% endif %}
@@ -22,7 +26,8 @@
                                 <img class="card-img-top" alt="workout image" src="{{ workout.category.image.url }}"
                                     style="height: 30vh; object-fit: cover;">
                                 {% else %}
-                                <img class="card-img-top" alt="workout image" src="{{ workout.image.url }}">
+                                <img class="card-img-top" alt="workout image" src="{{ workout.image.url }}"
+                                    style="height: 30vh; object-fit: cover;">
                                 {% endif %}
                                 <div class="image-flash">
                                     <p class="author">Created by: {{ workout.author }}</p>

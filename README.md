@@ -14,6 +14,7 @@ Final website: [https://build-fitness-66f794a76bbb.herokuapp.com/](https://build
     - [Flowcharts](#flowcharts)
     - [Models diagram](#models-diagram)
     - [Wireframes](#wireframes)
+- [Features](#features)
 - [Technology](#technology)
     - [Languages used](#languages-used)
     - [Frameworks and libraries used](#frameworks-and-libraries-used)
@@ -141,6 +142,27 @@ Changes made from design to final project:
 - Images:
     - Each workout has an image to keep the pages visually interesting. Placeholder images are provided if the user doesn't upload a specific image when creating a workout; these differ by category to keep the homepage and 'Browse all workouts' pages varied.
 
+## Features
+
+### Navigation
+- All users will be able to navigate to the homepage by clicking on either the site logo or 'Home' in the navbar.
+- All users can navigate to 'Browse all workouts' by clicking either 'All workouts' in the navbar or 'See all workouts >>' on the homepage.
+- All users can navigate to browse workouts filtered by a chosen category by either clicking 'Workout categories' in the navbar or navigating to the homepage and then choosing a workout category.
+- All users can search for workouts by name by typing all or part of it in the search bar in the navbar and either clicking 'Search' or hitting the Enter key.
+- All users can view a specific workout by selecting it from any of the browse pages.
+- Non-authenticated users with existing accounts can navigate to the sign in page by clicking 'Sign in' in the navbar.
+- Non-authenticated users without existing accounts can navigate to the sign up page by clicking 'Sign up' in the navbar.
+- Authenticated users can navigate to the sign out page by clicking 'Sign out' in the navbar.
+- Authenticated users can navigate to their saved or completed workouts by clicking 'My workouts' in the navbar and selecting either 'Saved' or 'Completed'.
+- Authorised users can navigate to the 'Create workout' page by clicking 'New workout' in the navbar.
+- Authorised pages can navigate to either 'Edit workout' or 'Delete workout' pages by clicking the respective button on the page of the workout they wish to edit or delete.
+
+![Navbar - non-authenticated user](/documentation/screenshots/navbar_non-authenticated_user.png)
+![Navbar - authenticated user](/documentation/screenshots/navbar_authenticated_user.png)
+![Navbar - authorised user](/documentation/screenshots/navbar_authorised_user.png)
+
+
+
 ## Technology
 
 ### Languages used
@@ -241,7 +263,7 @@ N.B. Django variables and tags removed before running as these were flagging as 
 | [404.html](/templates/404.html) | No errors or warnings to show. |
 
 #### CSS validator
-[W3C](https://jigsaw.w3.org/css-validator/validator)
+[W3C Jigsaw](https://jigsaw.w3.org/css-validator/validator)
 
 | File | Results |
 | --- | --- |

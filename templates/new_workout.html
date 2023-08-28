@@ -3,12 +3,13 @@
 {% block content %}
 
 {% load crispy_forms_tags %}
+{% load cloudinary %}
 
 <div class="container bg-primary-subtle">
     <div class="row">
         <div class="col-md-8 mt-3 offset-md-2" id="form-container">
             <h2>Create a new workout:</h2>
-            <form method="POST" class="new-workout">
+            <form method="POST" class="new-workout" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ workout_form | crispy }}
                 {{ exercise_formset.management_form }}

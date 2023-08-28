@@ -3,6 +3,7 @@
 {% block content %}
 
 <div class="container-fluid">
+    {% if request.resolver_match.url_name == "home" %}
     <div class="row">
         <h2>Recently added workouts</h2>
 
@@ -18,7 +19,8 @@
                                 <img class="card-img-top" alt="workout category image"
                                     src="{{ workout.category.image.url }}" style="height: 30vh; object-fit: cover;">
                                 {% else %}
-                                <img class="card-img-top" alt="workout category image" src="{{ workout.image.url }}">
+                                <img class="card-img-top" alt="workout category image" src="{{ workout.image.url }}"
+                                    style="height: 30vh; object-fit: cover;">
                                 {% endif %}
                                 <div class="image-flash">
                                     <p class="author">Created by: {{ workout.author }}</p>
@@ -49,6 +51,7 @@
             </div>
         </div>
     </div>
+    {% endif %}
 
     <!-- Category page navigation -->
     <nav>

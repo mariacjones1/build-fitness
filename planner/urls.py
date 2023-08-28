@@ -4,8 +4,9 @@ from django.urls import path, include
 
 urlpatterns = [
     path("", views.homepage, name="home"),
+    path("categories/", views.category_list, name="categories"),
     path("workouts/", views.WorkoutList.as_view(), name="workouts"),
-    path("workouts/<category_name>/", views.CategoryList.as_view(),
+    path("workouts/<category_name>/", views.WorkoutListByCategory.as_view(),
          name="category"),
     path("saved_workouts/", views.SavedWorkoutsView.as_view(),
          name="saved_workouts"),
