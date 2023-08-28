@@ -58,9 +58,10 @@
                 <div class="col-md-5">
                     <h4><em>Workout:</em></h4>
                     {% for exercise in workout.exercises.all %}
-                    <p class="exercises"><span style="font-weight: bolder;">{{ forloop.counter }}. {{ exercise.name }}</span>
-                    <br>
-                    <em>Sets:</em> {{ exercise.sets }} <em>Reps:</em> {{ exercise.reps }}</p>
+                    <p class="exercises"><span style="font-weight: bolder;">{{ forloop.counter }}.
+                            {{ exercise.name }}</span>
+                        <br>
+                        <em>Sets:</em> {{ exercise.sets }} <em>Reps:</em> {{ exercise.reps }}</p>
                     {% endfor %}
                 </div>
 
@@ -115,7 +116,8 @@
                     <button type="submit" class="btn btn-outline-primary mt-3">Submit</button>
                 </form>
                 {% else %}
-                <h5><a href="{% url 'account_login' %}" class="sign-in">Sign in</a> to leave a comment and save or complete workouts!</h5>
+                <h5><a href="{% url 'account_login' %}" class="sign-in">Sign in</a> to leave a comment and save or
+                    complete workouts!</h5>
                 {% endif %}
                 {% endif %}
             </div>

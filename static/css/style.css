@@ -67,6 +67,12 @@ a:hover, .nav-link:hover, .btn-like:hover, .card-title:hover, .see-all:hover {
     text-align: center;
 }
 
+/* Images */
+
+img {
+    min-height: 150px;
+}
+
 /* Hidden elements */
 
 .hidden {

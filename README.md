@@ -357,10 +357,9 @@ Automated testing was done using the following files:
 [test_views.py](/planner/test_views.py)
 [test_models.py](/planner/test_models.py)
 
-In order to run these tests, I had to change the database being used via [settings.py](/build/settings.py):
-![settings.py databases](/documentation/testing/database_for_testing.png)
+In order to run these tests, the DATABASE_URL must be commented out in [env.py](/env.py).
 
-Total coverage was 91%, with the uncovered code being in [views.py](/planner/views.py) and [admin.py](/planner/admin.py). This code has been manually tested. All automated tests pass.
+Total coverage is 91%, with the uncovered code being in [views.py](/planner/views.py) and [admin.py](/planner/admin.py). This code has been manually tested. All automated tests pass.
 ![Code coverage](/documentation/testing/coverage.png)
 
 ### Validator testing
@@ -408,9 +407,31 @@ N.B. Django variables and tags removed before running as these were flagging as 
 | [test_forms.py](/planner/test_forms.py) | 19, 30, 41: E231 missing whitespace after ','<br>44, 48, 52, 56: E501 line too long<br>-> All issues fixed and file re-run, all clear, no errors found. |
 | [test_models.py](/planner/test_models.py) | All clear, no errors found. |
 | [test_views.py](/planner/test_views.py) | All clear, no errors found. |
-| [settings.py](/build/settings.py) | 129, 132, 135, 138, 161: E501 line too long -> Fixed using '\\' and re-run, all clear, no errors found. |
+| [settings.py](/build/settings.py) | 126, 129, 132, 135, 158: E501 line too long -> Ignored as this code was generated automatically by Django, and adding line breaks with '\' causes errors. |
 | [build urls.py](/build/urls.py) | All clear, no errors found. |
 
+### Browser tests
+
+| Browser | Layout | Features |
+| --- | --- | --- |
+| Chrome | ✓ | ✓ |
+| Firefox | ✓ | ✓ |
+| Edge | ✓ | ✓ |
+| Safari* | ✓ | ✓ |
+
+### Device/screen size tests
+
+(Tested using Dev Tools, portrait and landscape where applicable)
+
+| Device | Layout |
+| --- | --- |
+| HP laptop screen (size 1536 x 864) | ✓ |
+| iPhone SE | ✓ |
+| Pixel 5 | ✓ |
+| Samsung Galaxy S20 Ultra | ✓ |
+| iPad Air | ✓ |
+| Surface Pro 7 | ✓ |
+| Nest Hub | ✓ |
 
 ## Credits
 Extending user model: https://simpleisbetterthancomplex.com/tutorial/2016/07/22/how-to-extend-django-user-model.html#onetoone

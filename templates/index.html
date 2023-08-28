@@ -59,16 +59,16 @@
             <div class="row">
                 <h2>Browse by category</h2>
                 {% for category in Category %}
-                <div class="col-md-4">
-                    <div class="card mb-4">
+                <div class="col-md-4 mb-3">
+                    <div class="card mb-4 h-100">
                         <a href="{% url 'category' category.slug %}">
                             <h2 class="card-title category-title">
                                 {{ category.name }} workouts</h2>
                         </a>
                         <div class="card-body"
-                            style="background-image: url('{{ category.image.url }}'); background-position: top; padding: 0;">
+                            style="background-image: url('{{ category.image.url }}'); background-position: top; padding: 0; height: 200px; background-size: cover;">
                             <div class="overlay"
-                                style="background-color: {{ category.color }}; opacity: 0.5; height: 200px;"></div>
+                                style="background-color: {{ category.color }}; opacity: 0.5; height: 100%;"></div>
                         </div>
                     </div>
                 </div>
@@ -82,4 +82,5 @@
     </nav>
 
 </div>
+
 {%endblock%}
