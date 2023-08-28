@@ -20,15 +20,20 @@ Final website: [https://build-fitness-66f794a76bbb.herokuapp.com/](https://build
     - [Favicon and title](#favicon-and-title)
     - [Navigation](#navigation)
     - [Create, edit and delete workouts](#create-edit-and-delete-workouts)
+    - [Category colours](#category-colours)
+    - [Workout images](#workout-images)
     - [Custom 403 and 404 pages](#custom-403-and-404-pages)
 - [Technology](#technology)
     - [Languages used](#languages-used)
     - [Frameworks, libraries and programs used](#frameworks-libraries-and-programs-used)
 - [Testing](#testing)
-    - [Testing user stories](#testing-user-stories)
+    - [User story and feature testing](#user-story-and-feature-testing)
     - [Automated testing](#automated-testing)
     - [Validator testing](#validator-testing)
+- [Deployment](#deployment)
 - [Credits](#credits)
+    - [Media](#media)
+    - [Coding Resources](#coding-resources)
 
 ## Design and planning
 
@@ -51,8 +56,8 @@ The end goal is to gain as much user traffic as possible, and have many people r
 
 #### As an authenitacted user...
 1. Save workouts: As an authenticated user I can mark workouts I like so that I can come back to them later.
-2. Complete workouts: As a user I can mark off workouts I have completed so that I can see a record of what I have done.
-3. Comment on workouts: As a user I can comment on workouts and see those left by others so that I can leave my feedback and interact with other users.
+2. Complete workouts: As an authenticated user I can mark off workouts I have completed so that I can see a record of what I have done.
+3. Comment on workouts: As an authenticated user I can comment on workouts and see those left by others so that I can leave my feedback and interact with other users.
 
 #### As an admin user...
 1. View saves: As an admin I can see how many people have saved a workout so that I can see what is popular.
@@ -65,6 +70,8 @@ The end goal is to gain as much user traffic as possible, and have many people r
 User stories were added and tracked using [GitHub projects](https://github.com/users/mariacjones1/projects/2/views/1).
 
 ### Flowcharts
+
+Flowcharts were created as part of the initial planning stage in order to map out some of the processes that would be required.
 
 1. Find a workout
 ![Find workout](/documentation/planning/flowchart_find-workout.png)
@@ -87,6 +94,7 @@ Changes made from plan to final project:
 ### Models diagram
 
 Created using [dbdiagram.io](https://dbdiagram.io/)
+
 ![Models diagram](/documentation/planning/models-diagram.png)
 
 ### Wireframes
@@ -142,7 +150,7 @@ Changes made from design to final project:
 ![Edit workout (screenshot)](/documentation/screenshots/edit_workout.png)
 
 Changes made from design to final project:
-- All fields span the entire section (automatically formatted using crispy forms).
+- All fields span the width of the section (automatically formatted using crispy forms).
 - Additional information field not included - potential future feature.
 - Edit workout uses a similar template, but current workout information is pre-populated and the user has the option to delete exercises.
 
@@ -158,7 +166,7 @@ Changes made from design to final project:
 ### Design choices
 
 - Colours:
-    - The main colours used are white, black and blue (dark blue for buttons, logo and links, light blue for container backgrounds). Other colours are used for workout category overlays to make them more visually different and interesting.
+    - The main colours used are white, black and blue (dark blue for buttons, logo and links, light blue for container backgrounds). Other colours are used for workout category overlays to make them visually different and more interesting.
 - Fonts:
     - Default Bootstrap fonts are used as they work well and there was no need to change them.
 - Images:
@@ -205,6 +213,17 @@ Changes made from design to final project:
 ![Edit workout](/documentation/screenshots/edit_workout.png)
 ![Delete workout](/documentation/screenshots/delete_workout.png)
 
+### Category colours
+- Each category is assigned a colour in the Django admin panel using Colorfield. This is used for the overlay on image categories and makes sure the category cards are visually different from the workout cards even when the same images might have been used.
+
+![Category admin](/documentation/screenshots/category_admin.png)
+![Category colours](/documentation/screenshots/browse_by_category.png)
+
+### Workout images
+- Each workout is created with an image so that the workout cards and detail pages are more interesting and aesthetically pleasing. If a user doesn't upload an image for a workout, the default image for the workout category is used as a placeholder. The image can be updated by admin users along with the other workout details.
+
+![Workout cards](/documentation/screenshots/browse_workouts.png)
+
 ### Custom 403 and 404 pages
 - Users who are directed to either 403 (access forbidden) or 404 (page not found) pages will see custom pages instead of default Django pages. Although basic, this is less jarring as it uses the same formatting as the rest of the site, and both feature a link to the homepage so that the user doesn't have to rely on browser buttons to get back.
 
@@ -249,16 +268,16 @@ Changes made from design to final project:
 
 ## Testing
 
-### Testing user stories
+### User story and feature testing
 
 1. View workouts: As a user I can view a selection of workouts so that I can choose one to complete.
     - Upon entering the site, users can see the three most recent workouts, as well as the options to see all workouts or to select a workout category by scrolling down.
-    - Test: enter the site
+    - Test: Enter the site.
     ![Homepage](/documentation/screenshots/homepage_not_signed_in.png)
 
 2. Filter workouts: As a user I can filter workouts so that I can easily find one that I want to do.
     - Users are able to use the search bar to search for a workout whose name contains the search term.
-    - Test: search term 'lower' entered into search bar
+    - Test: Search term 'lower' entered into search bar. All workouts with the word 'lower' in the name are displayed.
     ![Search results](/documentation/screenshots/search_results_lower.png)
 
 3. Save workouts: As a user I can mark workouts I like so that I can come back to them later.
@@ -274,7 +293,7 @@ Changes made from design to final project:
     ![Completed workouts](/documentation/screenshots/completed_workouts.png)
 
 5. Comment on workouts: As a user I can comment on workouts so that I can leave my feedback.
-    - Users who have signed in are able to comment on workout from the workout detail page. Comments must be approved by admin before they appear for other users to see. Users who have not signed in are still able to see other users' comments.
+    - Users who have signed in are able to comment on a workout from the workout detail page. Comments must be approved by admin before they appear for other users to see. Users who have not signed in are still able to see other users' comments.
     - Test: Sign in as any user, select a workout and submit a comment. Sign in as admin, go to the Django admin panel and approve the comment. Go back to the site, select the same workout, and see the comment.
     ![Submit a comment](/documentation/screenshots/submit_comment.png)
     ![Comment awaiting approval](/documentation/screenshots/comment_awaiting_approval.png)
@@ -291,6 +310,7 @@ Changes made from design to final project:
 7. Create account: As a user I can create an account so that I can come back to saved workouts and comment on workouts.
     - Users can either sign up or sign in using the respective navbar links. Authenticated users have access to additional website features, such as saving, completing and commenting on workouts.
     - Test: Sign up as a new user. Sign out and sign back in with new credentials. See the additional options in the navbar.
+
     ![New user sign-up](/documentation/screenshots/sign_up_new.png)
     ![New user sign-in](/documentation/screenshots/sign_in_new.png)
     ![Autheticated user navbar](/documentation/screenshots/navbar_authenticated_user.png)
@@ -298,6 +318,7 @@ Changes made from design to final project:
 8. View saves: As an admin I can see how many people have saved a workout so that I can see what is popular.
     - The number of saves and completes is visible on all workouts, both the cards on browsing pages and on the workout detail pages themselves. All users are able to see these numbers.
     - Test: Sign in as any user and check the saved and completed icons next to any workout.
+
     ![Saves and completes](/documentation/screenshots/saves_and_completes.png)
 
 
@@ -353,9 +374,9 @@ Changes made from design to final project:
 
 #### Python
 Automated testing was done using the following files:
-[test_forms.py](/planner/test_forms.py)
-[test_views.py](/planner/test_views.py)
-[test_models.py](/planner/test_models.py)
+- [test_forms.py](/planner/test_forms.py)
+- [test_views.py](/planner/test_views.py)
+- [test_models.py](/planner/test_models.py)
 
 In order to run these tests, the DATABASE_URL must be commented out in [env.py](/env.py).
 
@@ -407,7 +428,7 @@ N.B. Django variables and tags removed before running as these were flagging as 
 | [test_forms.py](/planner/test_forms.py) | 19, 30, 41: E231 missing whitespace after ','<br>44, 48, 52, 56: E501 line too long<br>-> All issues fixed and file re-run, all clear, no errors found. |
 | [test_models.py](/planner/test_models.py) | All clear, no errors found. |
 | [test_views.py](/planner/test_views.py) | All clear, no errors found. |
-| [settings.py](/build/settings.py) | 126, 129, 132, 135, 158: E501 line too long -> Ignored as this code was generated automatically by Django, and adding line breaks with '\' causes errors. |
+| [settings.py](/build/settings.py) | 126, 129, 132, 135, 158: E501 line too long -> Ignored as this code was generated automatically by Django, and adding line breaks with '\\' causes errors. |
 | [build urls.py](/build/urls.py) | All clear, no errors found. |
 
 ### Browser tests
@@ -433,11 +454,141 @@ N.B. Django variables and tags removed before running as these were flagging as 
 | Surface Pro 7 | ✓ |
 | Nest Hub | ✓ |
 
+### Dev Tools Lighthouse tests
+
+path: ""
+
+| Category | Score |
+| --- | --- |
+| Performance | 85 |
+| Accessability | 100 |
+| Best Practices | 83 |
+| SEO | 100 |
+
+path: "categories/"
+
+| Category | Score |
+| --- | --- |
+| Performance | 98 |
+| Accessability | 100 |
+| Best Practices | 83 |
+| SEO | 100 |
+
+path: "workouts/"
+
+| Category | Score |
+| --- | --- |
+| Performance | 95 |
+| Accessability | 100 |
+| Best Practices | 83 |
+| SEO | 100 |
+
+path: "workouts/full-body/"
+
+| Category | Score |
+| --- | --- |
+| Performance | 98 |
+| Accessability | 100 |
+| Best Practices | 83 |
+| SEO | 100 |
+
+path: "saved_workouts/"
+
+| Category | Score |
+| --- | --- |
+| Performance | 95 |
+| Accessability | 100 |
+| Best Practices | 83 |
+| SEO | 100 |
+
+path: "completed_workouts/"
+
+| Category | Score |
+| --- | --- |
+| Performance | 88 |
+| Accessability | 100 |
+| Best Practices | 83 |
+| SEO | 100 |
+
+path: "search_workouts/?q=lower"
+
+| Category | Score |
+| --- | --- |
+| Performance | 95 |
+| Accessability | 100 |
+| Best Practices | 83 |
+| SEO | 100 |
+
+path: "new_workout/"
+
+| Category | Score |
+| --- | --- |
+| Performance | 99 |
+| Accessability | 100 |
+| Best Practices | 83 |
+| SEO | 100 |
+
+path: "lower-body-hypertrophy/"
+
+| Category | Score |
+| --- | --- |
+| Performance | 97 |
+| Accessability | 100 |
+| Best Practices | 83 |
+| SEO | 100 |
+
+path: "edit_workout/lower-body-hypertrophy"
+
+| Category | Score |
+| --- | --- |
+| Performance | 98 |
+| Accessability | 100 |
+| Best Practices | 83 |
+| SEO | 100 |
+
+path: "delete_workout/lower-body-hypertrophy"
+
+| Category | Score |
+| --- | --- |
+| Performance | 98 |
+| Accessability | 100 |
+| Best Practices | 83 |
+| SEO | 100 |
+
+N.B.: performance is affected by the images on each page, which means each user might see different results. The above results are the most recent generated with the admin user logged in, with the current selection of workouts on each page as of 28/8/23.
+
+## Deployment
+
+- The project was first deployed are the start using Heroku using the following steps:
+    - Create a new app on Heroku and select your region (for me it is Europe)
+    - Set config vars in the Settings tab:
+        - CLOUDINARY_URL
+        - DATABASE_URL
+        - PORT
+        - SECRET_KEY
+    - Go to the deploy tab, select GitHub and search for the repository (must connect to GitHub).
+    - Click deploy. Once the build logs have run, you are able to click 'View' to open the app.
+
 ## Credits
-Extending user model: https://simpleisbetterthancomplex.com/tutorial/2016/07/22/how-to-extend-django-user-model.html#onetoone
-Multiselect: https://pypi.org/project/django-multiselectfield/
-Register models: https://codinggear.blog/how-to-register-model-in-django-admin/?expand_article=1&expand_article=1
-Multi-model view: https://www.youtube.com/watch?v=tP99aNINOGI&ab_channel=HarithaComputers%26Technology
-Dynamic form: https://www.youtube.com/watch?v=s3T-w2jhDHE&ab_channel=CodingEntrepreneurs
-Search: https://learndjango.com/tutorials/django-search-tutorial
-Permissions: https://www.honeybadger.io/blog/django-permissions/
+
+### Media
+
+- All images were sourced from [Pexels](https://www.pexels.com/)
+- Favicon icon was found on [favicon.io](https://favicon.io/)
+- Saved and completed icons were found on [Font Awesome](https://fontawesome.com/)
+
+### Coding resources
+
+#### General
+- [Django documentation](https://www.djangoproject.com/)
+- [Stack overflow](https://stackoverflow.com/)
+
+#### Specific queries
+- How to display multiple models in a single view: [Haritha Computers & Technology, YouTube](https://www.youtube.com/watch?v=tP99aNINOGI&ab_channel=HarithaComputers%26Technology)
+- Dynamic forms: [Coding Entrepreneurs, YouTube](https://www.youtube.com/watch?v=s3T-w2jhDHE&ab_channel=CodingEntrepreneurs)
+- Implementing the search bar: [LearnDjango](https://learndjango.com/tutorials/django-search-tutorial)
+- Managing user permissions: [Honeybadger](https://www.honeybadger.io/blog/django-permissions/)
+- Saving formset items and getting saved workouts: Tutor support
+
+#### Mentor
+Can Sucullu provided advice, suggestions and additional resources throughout the project.
