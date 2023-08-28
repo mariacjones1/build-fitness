@@ -119,7 +119,6 @@ Changes made from design to final project:
 #### Create (or edit) workout
 ![Create workout (wireframe)](/documentation/wireframes/create_new_workout.png)
 ![Create workout (screenshot)](/documentation/screenshots/create_workout.png)
-![Create workout scrolled down (screenshot)](/documentation/screenshots/create_workout.png)
 ![Edit workout (screenshot)](/documentation/screenshots/edit_workout.png)
 
 Changes made from design to final project:
@@ -144,6 +143,14 @@ Changes made from design to final project:
 
 ## Features
 
+### Responsive layouts
+- Bootstrap styles have been used to make the website responsive (see mock-up).
+
+### Favicon and title
+- UX is enhanced by featuring a relevant icon and title, making the tab easy to identify in the browser.
+
+![Favicon and title](/documentation/screenshots/favicon_and_title.png)
+
 ### Navigation
 - All users will be able to navigate to the homepage by clicking on either the site logo or 'Home' in the navbar.
 - All users can navigate to 'Browse all workouts' by clicking either 'All workouts' in the navbar or 'See all workouts >>' on the homepage.
@@ -161,7 +168,24 @@ Changes made from design to final project:
 ![Navbar - authenticated user](/documentation/screenshots/navbar_authenticated_user.png)
 ![Navbar - authorised user](/documentation/screenshots/navbar_authorised_user.png)
 
+### Create, edit and delete workouts
+- Only authorised users are able to create, update and delete workouts (permissions must be granted in Django admin). Non-authorised users will not see the 'New workout' link in the navbar, or the 'Edit workout' and 'Delete workout' buttons on the workout pages, and they will be receive a 403 error if they try to access the pages via the address bar.
+- The create and edit workout pages are almost identical, with the exceptions that existing workout details will be pre-populated on the edit workout page, and users will also be able to delete existing exercises by selecting the 'Delete' checkbox which is below each one.
+- New workouts will have space for three exercises, with the ability to add exercises one at a time by clicking 'Add exercise' at the bottom of the form, up to a maximum of ten exercises total. This feature is also present on the 'Edit workout' page, again up to a maximum total of ten (not taking into account any exercises marked for deletion, as they could be unchecked resulting in an error of too many exercises being added).
+- Sets and reps use integer fields with a minimum value of 1 and a maximum value of 10 (sets) and 30 (reps), to prevent users from entering negative, decimal or too-high numbers.
+- Users who select the 'Delete workout' button will be directed to a page asking them to confirm the deletion, giving them the option to cancel if they change their mind or selected the option by mistake.
+- After creating a new workout, users will be redirected to the homepage, where they should see their new workout as the first card under 'Recently added workouts'. After editing a workout, users will be redirected back to that workout page where they can see the changes they have made. After deleting a workout, users will be redirected to the homepage.
 
+![Create workout](/documentation/screenshots/create_workout.png)
+![Create workout - add exercise and submit](/documentation/screenshots/create_workout_2.png)
+![Edit workout](/documentation/screenshots/edit_workout.png)
+![Delete workout](/documentation/screenshots/delete_workout.png)
+
+### Custom 403 and 404 pages
+- Users who are directed to either 403 (access forbidden) or 404 (page not found) pages will see custom pages instead of default Django pages. Although basic, this is less jarring as it uses the same formatting as the rest of the site, and both feature a link to the homepage so that the user doesn't have to rely on browser buttons to get back.
+
+![403 page](/documentation/screenshots/403_page.png)
+![404 page](/documentation/screenshots/404_page.png)
 
 ## Technology
 

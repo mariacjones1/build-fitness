@@ -51,10 +51,10 @@ class Exercise(models.Model):
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=50)
     sets = models.IntegerField(
-        validators=[MinValueValidator(1), MaxValueValidator(5)],
+        validators=[MinValueValidator(1), MaxValueValidator(10)],
         null=True)
     reps = models.IntegerField(
-        validators=[MinValueValidator(1), MaxValueValidator(15)],
+        validators=[MinValueValidator(1), MaxValueValidator(30)],
         null=True)
     workout = models.ForeignKey(
         Workout, on_delete=models.CASCADE, related_name="exercises")
