@@ -10,14 +10,20 @@ Final website: [https://build-fitness-66f794a76bbb.herokuapp.com/](https://build
 ## Table of contents
 
 - [Design and planning](#design-and-planning)
+    - [Site owner goals](#site-owner-goals)
     - [User stories](#user-stories)
     - [Flowcharts](#flowcharts)
     - [Models diagram](#models-diagram)
     - [Wireframes](#wireframes)
 - [Features](#features)
+    - [Responsive layouts](#responsive-layouts)
+    - [Favicon and title](#favicon-and-title)
+    - [Navigation](#navigation)
+    - [Create, edit and delete workouts](#create-edit-and-delete-workouts)
+    - [Custom 403 and 404 pages](#custom-403-and-404-pages)
 - [Technology](#technology)
     - [Languages used](#languages-used)
-    - [Frameworks and libraries used](#frameworks-and-libraries-used)
+    - [Frameworks, libraries and programs used](#frameworks-libraries-and-programs-used)
 - [Testing](#testing)
     - [Testing user stories](#testing-user-stories)
     - [Automated testing](#automated-testing)
@@ -26,21 +32,35 @@ Final website: [https://build-fitness-66f794a76bbb.herokuapp.com/](https://build
 
 ## Design and planning
 
+### Site owner goals
+
+As the site owner, I want to provide a resource for users to find new workouts to try, and to have the option to save workouts, mark them as complete or leave comments. The website should be easy to navigate, with multiple options for users to find what they are looking for. It should be easy to register for an account, which will gain the user additional functionality to enhance their experience.
+Admin users should be able to create, edit and delete workouts without difficulty, but non-admin users should not be able to access this functionality.
+The site should be responsive and easy to use on any common device.
+The end goal is to gain as much user traffic as possible, and have many people regularly interacting with the site as repeat visitors.
+
 ### User stories
 
+#### As an anonymous user...
 1. View workouts: As a user I can view a selection of workouts so that I can choose one to complete.
 2. Filter workouts: As a user I can filter workouts so that I can easily find one that I want to do.
-3. Save workouts: As a user I can mark workouts I like so that I can come back to them later.
-4. Complete workouts: As a user I can mark off workouts I have completed so that I can see a record of what I have done.
-5. Comment on workouts: As a user I can comment on workouts so that I can leave my feedback.
-6. Workout categories: As a user I can browse different categories of workouts so that I can easily find the type of workout I want to do.
-7. Create account: As a user I can create an account so that I can come back to saved workouts and comment on workouts.
-8. View saves: As an admin I can see how many people have saved a workout so that I can see what is popular.
-9. View comments: As an admin I can see comments on workouts so that I can understand user feedback.
-10. Approve comments: As an admin I can approve comments so that I can make sure they are appropriate.
-11. Create workouts: As an admin I can create new workouts so that there is regular new content for users.
-12. Update workouts: As an admin I can update existing workouts so that they can be changed based on user feedback.
-13. Delete workouts: As an admin I can delete workouts so that unpopular workouts can be removed.
+3. Workout categories: As a user I can browse different categories of workouts so that I can easily find the type of workout I want to do.
+4. Create account: As a user I can create an account so that I can come back to saved workouts and comment on workouts (become an authenticated user).
+5. View saves: As a user I can see how many people have saved a workout so that I can see what is popular.
+6. View comments: As user I can see comments on workouts so that I can see what other people think.
+
+#### As an authenitacted user...
+1. Save workouts: As an authenticated user I can mark workouts I like so that I can come back to them later.
+2. Complete workouts: As a user I can mark off workouts I have completed so that I can see a record of what I have done.
+3. Comment on workouts: As a user I can comment on workouts and see those left by others so that I can leave my feedback and interact with other users.
+
+#### As an admin user...
+1. View saves: As an admin I can see how many people have saved a workout so that I can see what is popular.
+2. View comments: As an admin I can see comments on workouts so that I can understand user feedback.
+3. Approve comments: As an admin I can approve comments so that I can make sure they are appropriate.
+4. Create workouts: As an admin I can create new workouts so that there is regular new content for users.
+5. Update workouts: As an admin I can update existing workouts so that they can be changed based on user feedback.
+6. Delete workouts: As an admin I can delete workouts so that unpopular workouts can be removed.
 
 User stories were added and tracked using [GitHub projects](https://github.com/users/mariacjones1/projects/2/views/1).
 
@@ -132,6 +152,9 @@ Changes made from design to final project:
 Changes made from design to final project:
 - No wireframe created for deletion confirmation page.
 
+#### Responsiveness
+- No wireframes were made for additional devices as the primary method of ensuring responsiveness was to use Bootstrap classes before testing and updating as needed for smaller screens.
+
 ### Design choices
 
 - Colours:
@@ -175,6 +198,7 @@ Changes made from design to final project:
 - Sets and reps use integer fields with a minimum value of 1 and a maximum value of 10 (sets) and 30 (reps), to prevent users from entering negative, decimal or too-high numbers.
 - Users who select the 'Delete workout' button will be directed to a page asking them to confirm the deletion, giving them the option to cancel if they change their mind or selected the option by mistake.
 - After creating a new workout, users will be redirected to the homepage, where they should see their new workout as the first card under 'Recently added workouts'. After editing a workout, users will be redirected back to that workout page where they can see the changes they have made. After deleting a workout, users will be redirected to the homepage.
+- Any admin can edit or delete any existing workout, as only a limited number of users will have the necessary permissions.
 
 ![Create workout](/documentation/screenshots/create_workout.png)
 ![Create workout - add exercise and submit](/documentation/screenshots/create_workout_2.png)
@@ -196,20 +220,32 @@ Changes made from design to final project:
 - JavaScript
 - Python
 
-### Frameworks and libraries used
+### Frameworks, libraries and programs used
 
-- Django 3.2.20
+- [Django 3.2.20](https://www.djangoproject.com/)
     - Web framework
-- Bootstrap 5.3.1
+- [Bootstrap 5.3.1](https://getbootstrap.com/)
     - To assist with styling and responsiveness
-- Font Awesome
-    - To provide icons
-- Git
+- [ElephantSQL](https://www.elephantsql.com/)
+    - For database storage
+- [Cloudinary](https://cloudinary.com/)
+    - For media storage
+- [Git](https://git-scm.com/)
     - Used for version control by pushing commits to GitHub
-- GitHub
+- [GitHub](https://github.com/)
     - For project storage
-- GIMP
+- [Font Awesome](https://fontawesome.com/)
+    - To provide icons
+- [favicon.io](https://favicon.io/)
+    - To generate the favicon
+- [GIMP](https://www.gimp.org/)
     - To edit images used
+- [Balsamiq](https://balsamiq.com/)
+    - For creating wireframes
+- [dbdiagram.io](https://dbdiagram.io/)
+    - For creating the models diagram
+- [Pexels](https://www.pexels.com/)
+    - For sourcing images
 
 ## Testing
 
@@ -217,42 +253,101 @@ Changes made from design to final project:
 
 1. View workouts: As a user I can view a selection of workouts so that I can choose one to complete.
     - Upon entering the site, users can see the three most recent workouts, as well as the options to see all workouts or to select a workout category by scrolling down.
+    - Test: enter the site
+    ![Homepage](/documentation/screenshots/homepage_not_signed_in.png)
 
 2. Filter workouts: As a user I can filter workouts so that I can easily find one that I want to do.
     - Users are able to use the search bar to search for a workout whose name contains the search term.
+    - Test: search term 'lower' entered into search bar
+    ![Search results](/documentation/screenshots/search_results_lower.png)
 
 3. Save workouts: As a user I can mark workouts I like so that I can come back to them later.
     - Users who have signed in are able to save workouts from the workout detail page. Saved workouts will be shown when the user goes to My workouts > Saved in the navbar.
+    - Test: Sign in as any user, select a workout and click 'Save for later'. This should change to 'Saved'. Navigate to My workouts > Saved and see the workout.
+    ![Save a workout](/documentation/screenshots/save_a_workout.png)
+    ![Saved workouts](/documentation/screenshots/saved_workouts.png)
 
 4. Complete workouts: As a user I can mark off workouts I have completed so that I can see a record of what I have done.
     - Users who have signed in are able to mark workouts as completed from the workout detail page. Completed workouts will be shown when the user goes to My workouts > Completed in the navbar.
+    - Test: Sign in as any user, select a workout and click 'Mark as completed'. This should change to 'Completed'. Navigate to My workouts > Completed and see the workout.
+    ![Complete a workout](/documentation/screenshots/complete_a_workout.png)
+    ![Completed workouts](/documentation/screenshots/completed_workouts.png)
 
 5. Comment on workouts: As a user I can comment on workouts so that I can leave my feedback.
     - Users who have signed in are able to comment on workout from the workout detail page. Comments must be approved by admin before they appear for other users to see. Users who have not signed in are still able to see other users' comments.
+    - Test: Sign in as any user, select a workout and submit a comment. Sign in as admin, go to the Django admin panel and approve the comment. Go back to the site, select the same workout, and see the comment.
+    ![Submit a comment](/documentation/screenshots/submit_comment.png)
+    ![Comment awaiting approval](/documentation/screenshots/comment_awaiting_approval.png)
+    ![Approve comment as admin](/documentation/screenshots/approve_comments.png)
+    ![Comment is visible](/documentation/screenshots/comment_visible.png)
 
 6. Workout categories: As a user I can browse different categories of workouts so that I can easily find the type of workout I want to do.
-    - Users are able to select a workout category from the homepage, which will show them all the workouts within that category.
+    - Users are able to select a workout category from the homepage or by selecting 'Workout categories' in the navbar and choosing a category from the rendered page, which will show them all the workouts within that category.
+    - Test 1: Select a workout category from the homepage and view workouts for that category.
+    - Test 2: Go to 'Workout categories' in the navbar, choose a category from the rendered page and view workouts for the chosen category.
+    ![Select category](/documentation/screenshots/browse_by_category.png)
+    ![Browse selected category](/documentation/screenshots/browse_selected_category.png)
 
 7. Create account: As a user I can create an account so that I can come back to saved workouts and comment on workouts.
     - Users can either sign up or sign in using the respective navbar links. Authenticated users have access to additional website features, such as saving, completing and commenting on workouts.
+    - Test: Sign up as a new user. Sign out and sign back in with new credentials. See the additional options in the navbar.
+    ![New user sign-up](/documentation/screenshots/sign_up_new.png)
+    ![New user sign-in](/documentation/screenshots/sign_in_new.png)
+    ![Autheticated user navbar](/documentation/screenshots/navbar_authenticated_user.png)
 
 8. View saves: As an admin I can see how many people have saved a workout so that I can see what is popular.
     - The number of saves and completes is visible on all workouts, both the cards on browsing pages and on the workout detail pages themselves. All users are able to see these numbers.
+    - Test: Sign in as any user and check the saved and completed icons next to any workout.
+    ![Saves and completes](/documentation/screenshots/saves_and_completes.png)
+
 
 9. View comments: As an admin I can see comments on workouts so that I can understand user feedback.
     - Comments are visible on all workout detail pages to all users.
+    - Test: Sign in as any user, select any workout and view the comments underneath the workout details.
+    ![View comments](/documentation/screenshots/comment_visible.png)
 
 10. Approve comments: As an admin I can approve comments so that I can make sure they are appropriate.
-    - Submitted comments are not approved by default; an admin user must approve them before they are visible to other users.
+    - Submitted comments are not approved by default; an admin user must approve them before they are visible to other users. In the Django admin panel, the most recent comments will appear first, and comments can be filtered by whether or not they have been approved.
+    - Test: Sign in as any user, navigate to any workout and submit a comment. A message will appear saying that the comment is pending approval. Sign in as an admin user and go to the Django admin panel, go to comments and see the comments which haven't been approved. Select and approve the comment, then navigate back to the workout on the main site and see the comment there.
+    ![Approve comments](/documentation/screenshots/approve_comments.png)
 
 11. Create workouts: As an admin I can create new workouts so that there is regular new content for users.
     - Users assigned to the admin group on Django admin are able to create new workouts by clicking 'New workout' in the navbar and filling in the new workout form. The workout slug is populated from the workout title. Users without admin permissions will not see the 'New workout' option in the navbar, and will be directed to a 403 page if they try to access it via the address bar.
+    - Test 1: Sign in as an admin user, click 'New workout' in the navbar and fill in the new workout details. Click 'Add exercises' if additional exercises are needed beyond the forms for the first three initially provided. Submit the workout, and be navigated back to the homepage where the new workout will appear as the first workout under 'Recently added workouts'.
+    ![Create new workout](/documentation/screenshots/create_workout_filled_in.png)
+    ![Add exercise](/documentation/screenshots/add_exercise.png)
+    ![Recently added workouts](/documentation/screenshots/new_workout_added.png)
+    - Test 2: Sign in as a non-admin user and see that there is no 'New workout' link in the navbar. Add '/new_workout/' to the end of the URL in the address bar and be directed to a 403 page.
+    ![Navbar for non-admin user](/documentation/screenshots/navbar_authenticated_user.png)
+    ![403 page](/documentation/screenshots/new_workout_403.png)
+    - Test 3: Sign out and add '/new_workout/' to the end of the URL in the address bar. Non-authenticated users are directed to the login page.
+    ![Sign in page](/documentation/screenshots/new_workout_sign_in.png)
 
 12. Update workouts: As an admin I can update existing workouts so that they can be changed based on user feedback.
     - Users assigned to the admin group on Django admin are able to edit workouts by clicking the 'Edit workout' button on the workout detail page and making changes in the workout form. The workout slug will be updated if the title is changed. Users are able to delete and add new exercises. Users without admin permissions will not see the 'Edit workout' button, and will be directed to a 403 page if they try to access it via the address bar.
+    - Test 1: Sign in as an admin user, navigate to any workout page and click the 'Edit workout' button. Make the required changes, including clicking 'Add exercises' if additional exercises are needed beyond what has already been added, and deleting any existing exercises. Submit the workout, and be navigated back to the workout page which will show the new changes (including an updated slug if the workout name was changed).
+    ![Workout page with edit button](/documentation/screenshots/workout_edit_button.png)
+    ![Edit workout name and image](/documentation/screenshots/edit_workout_name_image.png)
+    ![Add and delete exercises](/documentation/screenshots/edit_workout_add_delete.png)
+    ![View updated workout](/documentation/screenshots/updated_workout.png)
+    - Test 2: Sign in as a non-admin user and see that there is no 'Edit workout' button on the workout pages. Add '/edit_workout/' before the selected workout slug in the address bar and be directed to a 403 page.
+    ![workout page with no edit button](/documentation/screenshots/selected_workout.png)
+    ![403 page](/documentation/screenshots/edit_workout_403.png)
+    - Test 3: Sign out and add '/edit_workout/' before the selected workout slug in the address bar. Non-authenticated users are directed to the login page.
+    ![Sign in page](/documentation/screenshots/edit_workout_sign_in.png)
 
 13. Delete workouts: As an admin I can delete workouts so that unpopular workouts can be removed.
     - Users assigned to the admin group on Django admin are able to delete workouts by clicking the 'Delete workout' button on the workout detail page. They will be directed to a page asking them to confirm the deletion, at which point they can either cancel or confirm delete. Users without admin permissions will not see the 'Delete workout' button, and will be directed to a 403 page if they try to access it via the address bar.
+    - Test 1: Sign in as an admin user, navigate to any workout page and click the 'Delete workout' button. On the confirm delete page, click 'Delete' to confirm that the workout will be deleted. Search for the workout and see that it does not appear in the results. Enter the workout URL in the address bar and be redirected to a 404 page.
+    ![Workout page with delete button](/documentation/screenshots/workout_delete_button.png)
+    ![Confirm delete](/documentation/screenshots/confirm_delete.png)
+    ![Workout search no results](/documentation/screenshots/deleted_workout_no_results.png)
+    ![Enter URL 404](/documentation/screenshots/deleted_workout_404.png)
+    - Test 2: Sign in as a non-admin user and see that there is no 'Delete workout' button on the workout pages. Add '/delete_workout/' before the selected workout slug in the address bar and be directed to a 403 page.
+    ![workout page with no delete button](/documentation/screenshots/selected_workout.png)
+    ![403 page](/documentation/screenshots/delete_workout_403.png)
+    - Test 3: Sign out and add '/edit_workout/' before the selected workout slug in the address bar. Non-authenticated users are directed to the login page.
+    ![Sign in page](/documentation/screenshots/delete_workout_sign_in.png)
 
 ### Automated testing
 
