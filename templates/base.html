@@ -12,14 +12,20 @@
     <meta name="description" content="Browse, save and complete workouts">
     <meta name="keywords" content="workout, exercises, gym, running, workout plan">
 
+    <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
     <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
 
+    <!-- Fontawesome -->
     <script src="https://kit.fontawesome.com/441ba9aadd.js" crossorigin="anonymous"></script>
+
+    <!-- Bootsrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    
+    <!-- Static CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 </head>
@@ -101,9 +107,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
     </script>
-    <!-- {% if request.resolver_match.url_name == "new_workout" or "edit_workout" %}
-    <script src="{% static 'js/add_form.js' %}"></script>
-    {% endif %} -->
+
 </body>
 
 </html>

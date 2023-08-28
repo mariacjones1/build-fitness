@@ -9,6 +9,7 @@ from cloudinary.models import CloudinaryField
 
 
 class Category(models.Model):
+    """Stores a single category"""
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=20, unique=True)
     image = CloudinaryField("image", default="placeholder")
@@ -16,10 +17,12 @@ class Category(models.Model):
     slug = models.SlugField(max_length=200, unique=True)
 
     def __str__(self):
+        """Returns a string with the category name"""
         return self.name
 
 
 class Workout(models.Model):
+    """Stores a single workout, relates to User and Category models"""
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
@@ -35,19 +38,24 @@ class Workout(models.Model):
         User, related_name="workout_completed", blank=True)
 
     class Meta:
+        """Orders workouts by creation date"""
         ordering = ["-created_on"]
 
     def __str__(self):
+        """Returns a string with the workout name"""
         return self.name
 
     def number_of_saves(self):
+        """Calculates number of saves for each workout"""
         return self.saves.count()
 
     def number_of_completed(self):
+        """Calculates number of completes for each workout"""
         return self.completed.count()
 
 
 class Exercise(models.Model):
+    """Stores a single exercise, relates to Workout model"""
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=50)
     sets = models.IntegerField(
@@ -60,13 +68,16 @@ class Exercise(models.Model):
         Workout, on_delete=models.CASCADE, related_name="exercises")
 
     class Meta:
+        """Orders exercises by id"""
         ordering = ["id"]
 
     def __str__(self):
+        """Returns a string with the exercise name"""
         return self.name
 
 
 class Comment(models.Model):
+    """Stores a single comment, relates to Workout and User models"""
     workout = models.ForeignKey(
         Workout, on_delete=models.CASCADE, related_name="comments")
     user = models.ForeignKey(
@@ -76,7 +87,12 @@ class Comment(models.Model):
     approved = models.BooleanField(default=False)
 
     class Meta:
+        """Orders comments by creation date"""
         ordering = ["-created_on"]
 
     def __str__(self):
+        """
+        Returns a string with comment body and username,
+        e.g. 'Comment This is a test comment by tester
+        """
         return f"Comment {self.body} by {self.user}"

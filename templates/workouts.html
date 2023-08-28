@@ -4,6 +4,7 @@
 
 <div class="container-fluid">
     <div class="row">
+        <!-- Page heading - varies based on url name -->
         {% if request.resolver_match.url_name == "category" %}
         <h2>{{ workout_list.0.category }} workouts</h2>
         {% elif request.resolver_match.url_name == "saved_workouts" %}

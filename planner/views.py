@@ -10,6 +10,10 @@ from .forms import *
 
 
 def homepage(request):
+    """
+    Renders the homepage with the three most recently added workouts
+    and the list of categories
+    """
     workout = Workout.objects.all()[:3]
     category = Category.objects.all().order_by('id')
     return render(request, 'index.html',
@@ -17,12 +21,14 @@ def homepage(request):
 
 
 def category_list(request):
+    """Uses the homepage template to show only the list of categories"""
     category = Category.objects.all().order_by('id')
     return render(request, 'index.html',
                   {'Category': category})
 
 
 class WorkoutList(generic.ListView):
+    """Shows a list of all workouts sorted by most recently created"""
     model = Workout
     category = Category.objects.all()
     queryset = Workout.objects.order_by('-created_on')
@@ -31,11 +37,16 @@ class WorkoutList(generic.ListView):
 
 
 class WorkoutListByCategory(generic.ListView):
+    """
+    Shows a list of workouts filtered by category
+    Uses the same template as WorkoutList
+    """
     model = Workout
     template_name = 'workouts.html'
     paginate_by = 6
 
     def get_queryset(self):
+        """Gets the category name and filters the workouts accordingly"""
         self.category = get_object_or_404(
             Category, slug=self.kwargs['category_name'])
         return Workout.objects.filter(
@@ -43,41 +54,72 @@ class WorkoutListByCategory(generic.ListView):
 
 
 class SavedWorkoutsView(generic.ListView):
+    """
+    Shows a list of workouts that have been saved by the user
+    Uses the same template as WorkoutList
+    """
     model = Workout
     template_name = 'workouts.html'
     paginate_by = 6
 
     def get_queryset(self):
+        """
+        Gets the user's id and filters the workouts by those which
+        have been saved by the user
+        """
         return Workout.objects.filter(saves__id__in=[self.request.user.id])
 
 
 class CompletedWorkoutsView(generic.ListView):
+    """
+    Shows a list of workouts that have been completed by the user
+    Uses the same template as WorkoutList
+    """
     model = Workout
     template_name = 'workouts.html'
     paginate_by = 6
 
     def get_queryset(self):
+        """
+        Gets the user's id and filters the workouts by those which
+        have been marked as completed by the user
+        """
         return Workout.objects.filter(completed__id__in=[self.request.user.id])
 
 
 class SearchWorkoutsView(generic.ListView):
+    """
+    Shows a list of workouts whose name contain a match for a given search term
+    Uses the same template as WorkoutList
+    """
     model = Workout
     template_name = 'workouts.html'
     paginate_by = 6
 
     def get_queryset(self):
+        """Gets a given search term and filters workouts accordingly"""
         query = self.request.GET.get('q')
         return Workout.objects.filter(name__icontains=query)
 
 
 class WorkoutDetail(View):
+    """Shows the details of a selected workout"""
 
     def get_queryset(self):
+        """Gets exercise queryset to be shown on workouts"""
         exercises = super().get_queryset()
         exercises = exercises.prefetch_related("exercises")
         return exercises
 
     def get(self, request, slug, *args, **kwargs):
+        """
+        Gets the selected workout using the slug
+        Gets the approved comments for the selected workout and orders
+        them by the date they were written
+        Checks whether the user has marked the workout as saved and/or
+        completed
+        Renders an empty comment form
+        """
         queryset = Workout.objects.all()
         workout = get_object_or_404(queryset, slug=slug)
         comments = workout.comments.filter(
@@ -103,6 +145,10 @@ class WorkoutDetail(View):
         )
 
     def post(self, request, slug, *args, **kwargs):
+        """
+        Posts the comment submitted by the user and refreshes the page
+        If the comment is invalid, the empty form is rendered again
+        """
         queryset = Workout.objects.all()
         workout = get_object_or_404(queryset, slug=slug)
         comments = workout.comments.filter(
@@ -137,6 +183,12 @@ class WorkoutDetail(View):
 
 
 class SaveWorkout(View):
+    """
+    If a user hasn't saved a workout and clicks the save button,
+    the workout is marked as saved
+    If a user has saved a workout and clicks the save button,
+    the workout is no longer marked as saved
+    """
     def post(self, request, slug):
         workout = get_object_or_404(Workout, slug=slug)
         if workout.saves.filter(id=self.request.user.id).exists():
@@ -147,6 +199,12 @@ class SaveWorkout(View):
 
 
 class CompleteWorkout(View):
+    """
+    If a user hasn't marked a workout as complete and clicks the complete
+    button, the workout is marked as completed
+    If a user has marked a workout as complete and clicks the complete button,
+    the workout is no longer marked as completed
+    """
     def post(self, request, slug):
         workout = get_object_or_404(Workout, slug=slug)
         if workout.completed.filter(id=self.request.user.id).exists():
@@ -159,6 +217,14 @@ class CompleteWorkout(View):
 @login_required
 @permission_required('planner.add_workout', raise_exception=True)
 def create_workout(request):
+    """
+    View for authorised users to create a new workout.
+    Exercise formset initially shows three forms, which is the minimum
+    to be completed. Ten is the maximum.
+    The workout author is set as the current user and the slug is
+    generated from the workout name.
+    After submitting the new workout, users will be direct to the homepage.
+    """
     ExerciseFormSet = inlineformset_factory(
         Workout,
         Exercise,
@@ -201,6 +267,14 @@ def create_workout(request):
 @login_required
 @permission_required('planner.change_workout', raise_exception=True)
 def edit_workout(request, slug):
+    """
+    View for authorised users to edit the selected workout.
+    Exercises can be added, up to a maximum of ten, and deleted.
+    The workout author is not changed but the slug is updated
+    from the workout name.
+    After submitting the updated workout, users will be redirected to
+    the workout detail page.
+    """
     queryset = Workout.objects.all()
     workout = get_object_or_404(queryset, slug=slug)
     ExerciseFormSet = inlineformset_factory(
@@ -245,6 +319,12 @@ def edit_workout(request, slug):
 @login_required
 @permission_required('planner.delete_workout', raise_exception=True)
 def delete_workout(request, slug):
+    """
+    View for authorised users to delete the selected workout.
+    Users will be directed to confirm_delete.html, and if they choose
+    to confirm, the workout will be deleted and they will be redirect to
+    the homepage.
+    """
     queryset = Workout.objects.all()
     workout = get_object_or_404(queryset, slug=slug)
     if request.method == 'GET':

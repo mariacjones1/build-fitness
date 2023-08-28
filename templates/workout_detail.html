@@ -4,6 +4,7 @@
 
 {% load crispy_forms_tags %}
 
+<!-- Workout container -->
 <div class="container bg-primary-subtle">
     <div class="row">
         <div class="col-md-10">
@@ -22,12 +23,14 @@
                     </div>
                 </div>
                 <div class="col-md-5">
+                    <!-- Workout image -->
                     {% if "placeholder" in workout.image.url %}
                     <img class="card-img-top" alt="workout image" src="{{ workout.category.image.url }}"
                         style="height: 30vh; object-fit: cover;">
                     {% else %}
                     <img class="card-img-top" alt="workout image" src="{{ workout.image.url }}">
                     {% endif %}
+                    <!-- Save and complete buttons -->
                     {% if user.is_authenticated %}
                     <form action="{% url 'workout_save' workout.slug %}" class="d-inline" method="POST">
                         {% csrf_token %}
@@ -51,6 +54,7 @@
                     </form>
                     {% endif %}
                 </div>
+                <!-- Workout details -->
                 <div class="col-md-5">
                     <h4><em>Workout:</em></h4>
                     {% for exercise in workout.exercises.all %}
@@ -59,6 +63,8 @@
                     <em>Sets:</em> {{ exercise.sets }} <em>Reps:</em> {{ exercise.reps }}</p>
                     {% endfor %}
                 </div>
+
+                <!-- Edit and delete workout buttons -->
                 <div class="col-md-2 text-end">
                     {% if perms.planner.change_workout %}
                     <a href="{% url 'edit_workout' workout.slug %}" class="btn btn-outline-primary fake-button">Edit
@@ -73,6 +79,7 @@
         </div>
     </div>
 
+    <!-- Comments -->
     <div class="row">
         <div class="col-md-6 mt-3">
             {% with comments.count as total_comments %}
@@ -89,6 +96,8 @@
                 {% endfor %}
             </div>
         </div>
+
+        <!-- Comment form -->
         <div class="col-md-6 mt-3">
             <div class="card-body">
                 {% if commented %}
