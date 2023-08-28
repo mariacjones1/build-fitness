@@ -25,5 +25,3 @@ function addNewForm(event) {
         exercisesList.append(copyEmptyForm);
     }
 }
-
-module.exports = addNewForm;

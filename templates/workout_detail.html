@@ -10,11 +10,11 @@
             <div class="row">
                 <div class="col-md-8">
                     <h2>{{ workout.name }}</h2>
-                    <h5>Created by {{ workout.author }}</h5>
+                    <p class="info">Created by {{ workout.author }}</p>
                 </div>
                 <div class="row">
                     <div class="col-md-3">
-                        <p>{{ workout.created_on}}</p>
+                        <p class="info">{{ workout.created_on}}</p>
                     </div>
                     <div class="col-md-2">
                         <p class="text-end"><i class="fa-solid fa-download"></i> {{ workout.number_of_saves }} <i
@@ -52,9 +52,11 @@
                     {% endif %}
                 </div>
                 <div class="col-md-5">
-                    <h4>Workout:</h4>
+                    <h4><em>Workout:</em></h4>
                     {% for exercise in workout.exercises.all %}
-                    {{ forloop.counter }}. {{ exercise.name }} {{ exercise.sets }}x{{ exercise.reps }}<br>
+                    <p class="exercises"><span style="font-weight: bolder;">{{ forloop.counter }}. {{ exercise.name }}</span>
+                    <br>
+                    <em>Sets:</em> {{ exercise.sets }} <em>Reps:</em> {{ exercise.reps }}</p>
                     {% endfor %}
                 </div>
                 <div class="col-md-2 text-end">
@@ -103,6 +105,8 @@
                     {% csrf_token %}
                     <button type="submit" class="btn btn-outline-primary mt-3">Submit</button>
                 </form>
+                {% else %}
+                <h5><a href="{% url 'account_login' %}" class="sign-in">Sign in</a> to leave a comment and save or complete workouts!</h5>
                 {% endif %}
                 {% endif %}
             </div>

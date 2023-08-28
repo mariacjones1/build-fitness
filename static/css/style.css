@@ -1,7 +1,11 @@
+/* Logo */
+
 .brand {
     font-weight: bold;
     color: #272573;
 }
+
+/* Links and buttons */
 
 a {
     color: black;
@@ -10,7 +14,7 @@ a {
 
 a:hover, .nav-link:hover, .btn-like:hover, .card-title:hover, .see-all:hover {
     color: #272573;
-    font-weight: bold;
+    text-decoration: underline;
 }
 
 .btn {
@@ -29,6 +33,27 @@ a:hover, .nav-link:hover, .btn-like:hover, .card-title:hover, .see-all:hover {
     color: #272573;
 }
 
+.btn-like {
+    background: transparent;
+    border: none;
+}
+
+.liked {
+    font-weight: bold;
+    color: #272573;
+}
+
+.new-workout button, .fake-button {
+    margin-top: 1rem;
+    text-decoration: none;
+}
+
+.fake-button:hover {
+    text-decoration: none;
+}
+
+/* Cards */
+
 .card {
     border-color: #272573;
 }
@@ -42,22 +67,24 @@ a:hover, .nav-link:hover, .btn-like:hover, .card-title:hover, .see-all:hover {
     text-align: center;
 }
 
-.btn-like {
-    background: transparent;
-    border: none;
-}
+/* Hidden elements */
 
 .hidden {
     display: none;
 }
 
-.new-workout button, .fake-button {
-    margin-top: 1rem;
-}
+/* Containers */
 
 .bg-primary-subtle {
     padding: 1rem;
     border-radius: 2rem;
+}
+
+/* Workout details */
+
+.info {
+    margin-bottom: 0;
+    font-size: smaller;
 }
 
 .comments {

@@ -48,10 +48,10 @@ class TestExerciseForm(TestCase):
             })
         self.assertFalse(form.is_valid())
 
-    def test_sets_below_6(self):
+    def test_sets_below_11(self):
         form = ExerciseForm({
             'name': 'Test exercise',
-            'sets': '6',
+            'sets': '11',
             'reps': '1'
             })
         self.assertFalse(form.is_valid())
@@ -64,10 +64,10 @@ class TestExerciseForm(TestCase):
             })
         self.assertFalse(form.is_valid())
 
-    def test_reps_below_16(self):
+    def test_reps_below_31(self):
         form = ExerciseForm({
             'name': 'Test exercise',
             'sets': '1',
-            'reps': '16'
+            'reps': '31'
             })
         self.assertFalse(form.is_valid())
